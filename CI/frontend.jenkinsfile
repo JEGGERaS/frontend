@@ -24,7 +24,7 @@ pipeline {
                     withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
                         sh """
                         curl -X POST \
-                            -H 'Authorization: token ${GITHUB_TOKEN}' \
+                            -H "Authorization: token ${GITHUB_TOKEN}" \
                             -H 'Accept: application/vnd.github.v3+json' \
                             ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
                             -d '{
@@ -82,56 +82,6 @@ pipeline {
                 dir('frontend-clones') {
                     // Build the Next.js project
                     sh 'npm run build'
-                }
-            }
-        }
-    
-    stage('Set GitHub Status on Success') {
-            when {
-                expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
-            }
-            steps {
-                script {
-                    // Set GitHub commit status to success
-                    withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                        curl -X POST \
-                            -H 'Authorization: token ${GITHUB_TOKEN}' \
-                            -H 'Accept: application/vnd.github.v3+json' \
-                            ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
-                            -d '{
-                                "state": "success",
-                                "context": "Jenkins CI (Success)",
-                                "description": "Build has succeeded!",
-                                "target_url": "${BUILD_URL}"
-                            }'
-                        """
-                    }
-                }
-            }
-        }
-
-        stage('Set GitHub Status on Failure') {
-            when {
-                expression { currentBuild.resultIsWorseOrEqualTo('FAILURE') }
-            }
-            steps {
-                script {
-                    // Set GitHub commit status to failure
-                    withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                        curl -X POST \
-                            -H 'Authorization: token ${GITHUB_TOKEN}' \
-                            -H 'Accept: application/vnd.github.v3+json' \
-                            ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
-                            -d '{
-                                "state": "failure",
-                                "context": "Jenkins CI (Failure)",
-                                "description": "Build has failed!",
-                                "target_url": "${BUILD_URL}"
-                            }'
-                        """
-                    }
                 }
             }
         }
