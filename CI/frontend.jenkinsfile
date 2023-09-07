@@ -21,7 +21,7 @@ pipeline {
         stage('Set GitHub Status to Pending') {
             steps {
                 script {
-                    setBuildStatus('Jenkins CI (Pending...)', 'pending')
+                    setBuildStatus('Jenkins CI (Pending...)', 'PENDING')
                 }
             }
         }
@@ -76,10 +76,10 @@ pipeline {
 
 post {
     success {
-        setBuildStatus("Build succeeded", "SUCCESS");
+        setBuildStatus("Jenkins CI (Success)", "SUCCESS");
     }
     failure {
-        setBuildStatus("Build failed", "FAILURE");
+        setBuildStatus("Jenkins CI (Failure)", "FAILURE");
     }
   }
 
