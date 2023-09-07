@@ -16,29 +16,7 @@ pipeline {
         string(name: 'BRANCH_NAME', description: 'Enter the branch name', defaultValue: 'main')
     }
 
-    stages {
-        stage('Set GitHub Status to Pending') {
-            steps {
-                script {
-                    // Set GitHub commit status to pending
-                    withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                        curl -X POST \
-                            -H "Authorization: token ${GITHUB_TOKEN}" \
-                            -H 'Accept: application/vnd.github.v3+json' \
-                            ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
-                            -d '{
-                                "state": "pending",
-                                "context": "Jenkins CI (Pending)",
-                                "description": "Build is pending...",
-                                "target_url": "${BUILD_URL}"
-                            }'
-                        """
-                    }
-                }
-            }
-        }
-        
+    stages {        
         stage('Checkout') {
             steps {
                 script {
