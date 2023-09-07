@@ -16,10 +16,6 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'JenkinsToken'
     }
 
-    parameters {
-        string(name: 'BRANCH_NAME', description: 'Enter the branch name', defaultValue: 'main')
-    }
-
     stages {
 
         stage('Set GitHub Status to Pending') {
@@ -38,7 +34,7 @@ pipeline {
                     // Clone the repository with the specified branch
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: "refs/heads/${params.BRANCH_NAME}"]],
+                        branches: [[name: "refs/heads/${BRANCH_NAME}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'frontend-clones']],
                         userRemoteConfigs: [[url: repoURL]]
