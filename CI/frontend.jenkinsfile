@@ -88,27 +88,37 @@ pipeline {
     }
     
 post {
-        success {
-            script {
-                step([
-                    $class: 'GitHubCommitStatusSetter',
-                    reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
-                    contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
-                    errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'UNSTABLE']],
-                    credentialsId: env.GITHUB_CREDENTIALS_ID
-                ])
-            }
-        }
-        failure {
-            script {
-                step([
-                    $class: 'GitHubCommitStatusSetter',
-                    reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
-                    contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
-                    errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'FAILURE']],
-                    credentialsId: env.GITHUB_CREDENTIALS_ID
-                ])
-            }
+    success {
+        script {
+            sh """
+            curl -X POST \
+                -H 'Authorization: token ${withCredentials([string(credentialsId: 'JenkinsToken', variable: 'GITHUB_TOKEN')]) { env.GITHUB_TOKEN }}' \
+                -H 'Accept: application/vnd.github.v3+json' \
+                ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
+                -d '{
+                    "state": "success",
+                    "context": "Jenkins CI",
+                    "description": "Build has succeeded!",
+                    "target_url": "${BUILD_URL}"
+                }'
+            """
         }
     }
+    failure {
+        script {
+            sh """
+            curl -X POST \
+                -H 'Authorization: token ${withCredentials([string(credentialsId: 'JenkinsToken', variable: 'GITHUB_TOKEN')]) { env.GITHUB_TOKEN }}' \
+                -H 'Accept: application/vnd.github.v3+json' \
+                ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
+                -d '{
+                    "state": "failure",
+                    "context": "Jenkins CI",
+                    "description": "Build has failed!",
+                    "target_url": "${BUILD_URL}"
+                }'
+            """
+        }
+    }
+}
 }
