@@ -74,10 +74,19 @@ pipeline {
         }
     }
 
+post {
+    success {
+        setBuildStatus("Build succeeded", "SUCCESS");
+    }
+    failure {
+        setBuildStatus("Build failed", "FAILURE");
+    }
+  }
+
 }
 
-def setBuildStatus(message, state, repoOwner, repoName){
-        def reposSource = [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/${repoOwner}/${repoName}"]
+def setBuildStatus(message, state){
+        def reposSource = [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/JEGGERaS/frontend"]
         def contextSource = [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"]
         def errorHandlers = [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]]
         def statusResultSource = [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
