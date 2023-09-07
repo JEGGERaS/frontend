@@ -87,37 +87,28 @@ pipeline {
         }
     }
     
-    post {
+post {
         success {
             script {
-                // Set GitHub commit status to success
-                echo "Setting GitHub commit status to 'success'..."
-                setGitHubCommitStatus('success', 'Jenkins CI (Success)', 'Build has succeeded!')
+                step([
+                    $class: 'GitHubCommitStatusSetter',
+                    reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
+                    contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
+                    errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'UNSTABLE']],
+                    credentialsId: GITHUB_CREDENTIALS_ID
+                ])
             }
         }
         failure {
             script {
-                // Set GitHub commit status to failure
-                echo "Setting GitHub commit status to 'failure'..."
-                setGitHubCommitStatus('failure', 'Jenkins CI (Failure)', 'Build has failed!')
+                step([
+                    $class: 'GitHubCommitStatusSetter',
+                    reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
+                    contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
+                    errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'FAILURE']],
+                    credentialsId: GITHUB_CREDENTIALS_ID
+                ])
             }
         }
-    }
-}
-    
-    def setGitHubCommitStatus(state, context, description) {
-    withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
-        sh """
-        curl -X POST \
-            -H 'Authorization: token ${GITHUB_TOKEN}' \
-            -H 'Accept: application/vnd.github.v3+json' \
-            ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
-            -d '{
-                "state": "${state}",
-                "context": "${context}",
-                "description": "${description}",
-                "target_url": "${BUILD_URL}"
-            }'
-        """
     }
 }
