@@ -95,7 +95,7 @@ post {
                     reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
                     contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
                     errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'UNSTABLE']],
-                    credentialsId: GITHUB_CREDENTIALS_ID
+                    credentialsId: env.GITHUB_CREDENTIALS_ID
                 ])
             }
         }
@@ -106,7 +106,7 @@ post {
                     reposSource: [$class: 'ManuallyEnteredRepositorySource', url: "${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
                     contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Jenkins CI'],
                     errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'FAILURE']],
-                    credentialsId: GITHUB_CREDENTIALS_ID
+                    credentialsId: env.GITHUB_CREDENTIALS_ID
                 ])
             }
         }
