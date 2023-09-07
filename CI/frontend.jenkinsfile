@@ -21,7 +21,7 @@ pipeline {
         stage('Set GitHub Status to Pending') {
             steps {
                 script {
-                    setBuildStatus('Jenkins CI (Pending...)', 'pending', env.GITHUB_REPO_OWNER, env.GITHUB_REPO_NAME)
+                    setBuildStatus('Jenkins CI (Pending...)', 'pending')
                 }
             }
         }
