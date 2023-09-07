@@ -12,7 +12,8 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'JenkinsToken'
     }
 
-def setBuildStatus = { String message, String state ->
+def setBuildStatus
+    setBuildStatus = { String message, String state ->
         def reposSource = [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"]
         def contextSource = [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"]
         def errorHandlers = [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]]
