@@ -12,21 +12,6 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'JenkinsToken'
     }
 
-def setBuildStatus(message, state){
-        def reposSource = [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"]
-        def contextSource = [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"]
-        def errorHandlers = [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]]
-        def statusResultSource = [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
-
-        step([
-            $class: "GitHubCommitStatusSetter",
-            reposSource: reposSource,
-            contextSource: contextSource,
-            errorHandlers: errorHandlers,
-            statusResultSource: statusResultSource
-        ]);
-    }
-
     parameters {
         string(name: 'BRANCH_NAME', description: 'Enter the branch name', defaultValue: 'main')
     }
@@ -36,7 +21,7 @@ def setBuildStatus(message, state){
         stage('Set GitHub Status to Pending') {
             steps {
                 script {
-                    setBuildStatus('Jenkins CI (Pending...)', 'pending')
+                    setBuildStatus('Jenkins CI (Pending...)', 'pending', env.GITHUB_REPO_OWNER, env.GITHUB_REPO_NAME)
                 }
             }
         }
@@ -90,3 +75,18 @@ def setBuildStatus(message, state){
     }
 
 }
+
+def setBuildStatus(message, state, repoOwner, repoName){
+        def reposSource = [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/${repoOwner}/${repoName}"]
+        def contextSource = [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"]
+        def errorHandlers = [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]]
+        def statusResultSource = [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+
+        step([
+            $class: "GitHubCommitStatusSetter",
+            reposSource: reposSource,
+            contextSource: contextSource,
+            errorHandlers: errorHandlers,
+            statusResultSource: statusResultSource
+        ]);
+    }
