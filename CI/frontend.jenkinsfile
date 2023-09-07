@@ -12,6 +12,16 @@ pipeline {
         GITHUB_CREDENTIALS_ID = 'JenkinsToken'
     }
 
+void setBuildStatus(String message, String state) {
+  step([
+      $class: "GitHubCommitStatusSetter",
+      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}"],
+      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+      statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+  ]);
+}
+
     parameters {
         string(name: 'BRANCH_NAME', description: 'Enter the branch name', defaultValue: 'main')
     }
@@ -21,21 +31,7 @@ pipeline {
         stage('Set GitHub Status to Pending') {
             steps {
                 script {
-                    // Set GitHub commit status to pending
-                    withCredentials([string(credentialsId: GITHUB_CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                        curl -X POST \
-                            -H "Authorization: token ${GITHUB_TOKEN}" \
-                            -H 'Accept: application/vnd.github.v3+json' \
-                            ${GITHUB_API_URL}/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/statuses/\${GIT_COMMIT} \
-                            -d '{
-                                "state": "pending",
-                                "context": "Jenkins CI (Pending)",
-                                "description": "Build is pending...",
-                                "target_url": "${BUILD_URL}"
-                            }'
-                        """
-                    }
+                    setBuildStatus('Jenkins CI (Pending...)', 'pending')
                 }
             }
         }
