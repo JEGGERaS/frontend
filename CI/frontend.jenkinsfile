@@ -14,6 +14,7 @@ pipeline {
         GITHUB_REPO_OWNER = 'JEGGERaS'
         GITHUB_REPO_NAME = 'frontend'
         GITHUB_CREDENTIALS_ID = 'JenkinsToken'
+        BRANCH = (env.CURRENT_BRANCH != null) ? env.CURRENT_BRANCH : env.BRANCH_NAME
     }
 
     stages {
@@ -34,7 +35,7 @@ pipeline {
                     // Clone the repository with the specified branch
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: "refs/heads/${CHANGE_BRANCH}"]],
+                        branches: [[name: "refs/heads/${env.BRANCH}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'frontend-clones']],
                         userRemoteConfigs: [[url: repoURL]]
