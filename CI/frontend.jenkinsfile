@@ -37,7 +37,7 @@ pipeline {
                         branches: [[name: "refs/heads/${env.GIT_BRANCH}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'frontend-clones']],
-                        userRemoteConfigs: [[url: repoURL]]
+                        userRemoteConfigs: [[url: repoURL, credentialsId: GITHUB_CREDENTIALS_ID]]
                     ])
                 }
             }
