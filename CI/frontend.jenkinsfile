@@ -34,7 +34,7 @@ pipeline {
                     // Clone the repository with the specified branch
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: "refs/heads/${env.CHANGE_BRANCH}"]],
+                        branches: [[name: "refs/heads/${env.CHANGE_TARGET}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'frontend-clones']],
                         userRemoteConfigs: [[url: repoURL]]
