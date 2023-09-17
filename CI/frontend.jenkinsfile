@@ -30,11 +30,12 @@ pipeline {
             steps {
                 script {
                     def repoURL = 'https://github.com/JEGGERaS/frontend.git'
+                    def branchName = env.CHANGE_BRANCH ?: env.BRANCH_NAME
                     
                     // Clone the repository with the specified branch
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: "refs/heads/${env.GIT_BRANCH}"]],
+                        branches: [[name: "refs/heads/${branchName}"]],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'frontend-clones']],
                         userRemoteConfigs: [[url: repoURL, credentialsId: GITHUB_CREDENTIALS_ID]]
