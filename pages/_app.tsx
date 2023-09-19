@@ -1,4 +1,4 @@
-import { Box, Checkbox, ThemeProvider } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
 import theme from "constants/color-palette";
 import type { AppProps } from "next/app";
 
