@@ -1,84 +1,95 @@
-import { grey } from "@mui/material/colors";
-import { createTheme } from "@mui/material/styles";
-
-declare module "@mui/material/styles" {
-  interface Palette {
-    page: Palette["primary"];
-    textSec: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    page?: PaletteOptions["primary"];
-    textSec?: PaletteOptions["primary"];
-  }
-}
-
-declare module "@mui/material/Button" {
-  interface ButtonPropsColorOverrides {
-    page: true;
-    textSec: true;
-  }
-}
-
-const brightPalette = {
-  palette: {
-    primary: {
-      main: "#F3CB41",
-    },
-    secondary: {
-      main: "#4169F3",
-    },
-    text: {
-      primary: "#FAFAFA",
-      secondary: "#3A3A3A",
-    },
-    background: {
-      default: "#FAFAFA",
-    },
-    page: {
-      main: "#FAFAFA",
-      dark: "#F5F5F5",
-    },
-    textSec: {
-      main: "#3A3A3A",
-      dark: "#000000",
-      light: grey[500],
-    },
-  },
-};
-
-const darkPalette = {
-  palette: {
-    primary: {
-      main: "rgba(243, 203, 65, 0.8)",
-    },
-    secondary: {
-      main: "rgba(65, 105, 243, 0.8)",
-    },
-    text: {
-      primary: "#FAFAFA",
-      secondary: "#3A3A3A",
-    },
-    background: {
-      default: "#202020",
-    },
-    page: {
-      main: "#FAFAFA",
-      dark: "#F5F5F5",
-    },
-    textSec: {
-      main: "#3A3A3A",
-      dark: "#000000",
-      light: grey[500],
-    },
-  },
-};
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "Dosis, sans-serif",
-  },
-  ...brightPalette,
+export const tokens = (mode: string) => ({
+  ...(mode === "light"
+    ? {
+        primary: {
+          100: "#fdf5d9",
+          200: "#faeab3",
+          300: "#f8e08d",
+          400: "#f5d567",
+          500: "#f3cb41",
+          600: "#c2a234",
+          700: "#927a27",
+          800: "#61511a",
+          900: "#31290d",
+        },
+        secondary: {
+          100: "#d9e1fd",
+          200: "#b3c3fa",
+          300: "#8da5f8",
+          400: "#6787f5",
+          500: "#4169f3",
+          600: "#3454c2",
+          700: "#273f92",
+          800: "#1a2a61",
+          900: "#0d1531",
+        },
+        white: {
+          100: "#fefefe",
+          200: "#fdfdfd",
+          300: "#fcfcfc",
+          400: "#fbfbfb",
+          500: "#fafafa",
+          600: "#c8c8c8",
+          700: "#969696",
+          800: "#646464",
+          900: "#323232",
+        },
+        black: {
+          100: "#d2d2d2",
+          200: "#a6a6a6",
+          300: "#797979",
+          400: "#4d4d4d",
+          500: "#202020",
+          600: "#1a1a1a",
+          700: "#131313",
+          800: "#0d0d0d",
+          900: "#060606",
+        },
+      }
+    : {
+        primary: {
+          100: "#fdf5d9",
+          200: "#faeab3",
+          300: "#f8e08d",
+          400: "#f5d567",
+          500: "#f3cb41",
+          600: "#c2a234",
+          700: "#927a27",
+          800: "#61511a",
+          900: "#31290d",
+        },
+        secondary: {
+          100: "#d9e1fd",
+          200: "#b3c3fa",
+          300: "#8da5f8",
+          400: "#6787f5",
+          500: "#4169f3",
+          600: "#3454c2",
+          700: "#273f92",
+          800: "#1a2a61",
+          900: "#0d1531",
+        },
+        white: {
+          100: "#fefefe",
+          200: "#fdfdfd",
+          300: "#fcfcfc",
+          400: "#fbfbfb",
+          500: "#fafafa",
+          600: "#c8c8c8",
+          700: "#969696",
+          800: "#646464",
+          900: "#323232",
+        },
+        black: {
+          100: "#d2d2d2",
+          200: "#a6a6a6",
+          300: "#797979",
+          400: "#4d4d4d",
+          500: "#202020",
+          600: "#1a1a1a",
+          700: "#131313",
+          800: "#0d0d0d",
+          900: "#060606",
+        },
+      }),
 });
-
-export default theme;
