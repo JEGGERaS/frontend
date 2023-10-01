@@ -1,6 +1,6 @@
 import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, colors, useTheme } from "@mui/material";
 import React, {useState } from "react";
-import { tokens } from "constants/color-palette";
+import { tokens } from "../../constants/color-palette";
 import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded } from "@mui/icons-material";
 import HorizontalDivider from "../common/HorizontalDivider";
 
@@ -26,8 +26,9 @@ const UserDropdown = (props: UserDropdownProps) => {
   };
 
   return (
-    <Box> 
+    <Box data-testid="user-dropdown"> 
       <Button onClick={handleClick} variant="contained"
+      data-testid="user-dropdown-button"
        sx={{
         height: "3.5rem",
         width: "auto",
@@ -59,7 +60,6 @@ const UserDropdown = (props: UserDropdownProps) => {
         }} />
       </Button>
       <Menu
-        id="dropdown-menu"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -85,7 +85,7 @@ const UserDropdown = (props: UserDropdownProps) => {
           }
         }}
       >
-        <MenuList>
+        <MenuList data-testid="user-dropdown-menu">
         <HorizontalDivider variant="middle" bgColor={colors.black[100]} />
         <MenuItem onClick={handleClose} sx={{
           marginTop:"1rem",
