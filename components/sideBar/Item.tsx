@@ -29,18 +29,16 @@ const Item = (props: ItemProps) => {
         borderLeft: "4px solid transparent",
         height: "2.5rem",
         "&:hover": {
-          animation: "expandWidth 0.5s forwards",
-          //bgcolor: alpha(colors.white[500], 0.9),
-          bgcolor: colors.white[500],
-          color: theme.palette.primary.main,
+          bgcolor: "transparent",
+          color: theme.palette.secondary.main,
+          width: "85%",
           borderRadius: "0 2rem 2rem 0",
           borderLeft: `4px solid ${theme.palette.secondary.main}`,
-          //transition: " background-color 0.5s",
-          transition: "color 0.2s",
+          transition: "all 0.4s",
         },
         "&.Mui-selected": {
           width: "85%",
-          bgcolor: colors.white[500],
+          bgcolor: theme.palette.mode === 'light' ? colors.white[500] : colors.black[500],
           color: theme.palette.primary.main,
           borderRadius: "0 2rem 2rem 0",
           borderLeft: `4px solid ${theme.palette.secondary.main}`,
@@ -48,18 +46,10 @@ const Item = (props: ItemProps) => {
         "&.Mui-selected:hover": {
           width: "85%",
           animation: "none",
-          bgcolor: colors.white[500],
+          bgcolor: theme.palette.mode === 'light' ? colors.white[500] : colors.black[500],
           color: theme.palette.primary.main,
           borderRadius: "0 2rem 2rem 0",
           borderLeft: `4px solid ${theme.palette.secondary.main}`,
-        },
-        "@keyframes expandWidth": {
-          from: {
-            width: "0%",
-          },
-          to: {
-            width: "85%",
-          },
         },
       }}
       onClick={() => props.setSelected(props.title)}
