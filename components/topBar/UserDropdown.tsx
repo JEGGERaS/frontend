@@ -11,9 +11,6 @@ interface UserDropdownProps {
 }
 
 
-
-
-
 const UserDropdown = (props: UserDropdownProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -66,8 +63,13 @@ const UserDropdown = (props: UserDropdownProps) => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        transitionDuration={2}
         anchorOrigin={{
           vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
           horizontal: "left",
         }}
         sx={{ 
@@ -83,6 +85,7 @@ const UserDropdown = (props: UserDropdownProps) => {
           }
         }}
       >
+        <MenuList>
         <HorizontalDivider variant="middle" bgColor={colors.black[100]} />
         <MenuItem onClick={handleClose} sx={{
           marginTop:"1rem",
@@ -126,9 +129,10 @@ const UserDropdown = (props: UserDropdownProps) => {
             Wyloguj
           </Typography>
         </MenuItem>
+        </MenuList>
       </Menu>
     </Box>
-  );
+  );  
 }
 
 export default UserDropdown;

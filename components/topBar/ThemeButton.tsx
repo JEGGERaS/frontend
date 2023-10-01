@@ -1,7 +1,8 @@
 import {IconButton, alpha, useTheme } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { WbSunnyRounded, DarkModeRounded } from "@mui/icons-material";
 import { tokens } from "constants/color-palette";
+import { ColorModeContext } from "constants/themeConfiguration";
 
 
 interface ThemeButtonProps {
@@ -11,8 +12,11 @@ interface ThemeButtonProps {
 const ThemeButton = (props : ThemeButtonProps) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const colorMode = useContext(ColorModeContext);
 
-  return <IconButton sx={{
+  return <IconButton
+  onClick={colorMode.toggleColorMode}
+  sx={{
     width: "3.5rem",
     height: "3.5rem",
     padding: "0.5rem",

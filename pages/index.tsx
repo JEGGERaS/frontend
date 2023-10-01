@@ -10,6 +10,8 @@ export default function Home() {
         flexDirection: "row",
         height: "100vh",
         width: "100vw",
+        overflow: "hidden",
+        position: "fixed"
       }
     }>
       <SideBar />
