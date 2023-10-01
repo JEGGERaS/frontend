@@ -1,5 +1,19 @@
 import SideBar from "@/components/sideBar/SideBar";
+import TopBar from "@/components/topBar/TopBar";
+import { Box } from "@mui/material";
 
 export default function Home() {
-  return <SideBar />;
+  return (
+    <Box sx={
+      {
+        display: "flex",
+        flexDirection: "row",
+        height: "100vh",
+        width: "100vw",
+      }
+    }>
+      <SideBar />
+      <TopBar page={"Home"} />
+    </Box>
+  );
 }
