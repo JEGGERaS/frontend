@@ -103,9 +103,6 @@ const SideBar = () => {
           setSelected={setSelected}
         />
       </MenuList>
-      <Button variant="contained" color="warning" onClick={handleCollapse}>
-        COLLAPSE
-      </Button>
     </Box>
   );
 };
