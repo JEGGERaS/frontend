@@ -5,7 +5,6 @@ import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded } from "@mui/
 import HorizontalDivider from "../common/HorizontalDivider";
 
 interface UserDropdownProps {
-  theme: string;
   firstName: string;
   lastName: string;
 }

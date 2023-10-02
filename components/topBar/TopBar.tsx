@@ -47,7 +47,7 @@ const TopBar = (props: TopBarProps) => {
       >
         <ThemeButton/>
         <NotificationButton theme={theme.palette.mode} amount={100} />
-        <UserDropdown theme={theme.palette.mode} firstName="Łukasz" lastName="Kacperkowiak" />
+        <UserDropdown firstName="Łukasz" lastName="Kacperkowiak" />
       </Box>
     </Box>
   );
