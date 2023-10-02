@@ -21,7 +21,7 @@ const NotificationButton = (props: NotificationButtonProps) => {
         width: "3.5rem",
         height: "3.5rem",
         marginRight: "2rem",
-        borderRadius: "1rem",
+        borderRadius: "1.5rem",
         "&:hover": {
           backgroundColor:
             theme.palette.mode === "light" ? alpha(colors.secondary[300], 0.8) : alpha(colors.secondary[700], 0.8),
@@ -34,7 +34,7 @@ const NotificationButton = (props: NotificationButtonProps) => {
             color: theme.palette.mode === "light" ? alpha(colors.secondary[500], 0.9) : alpha(colors.white[500], 0.9),
             backgroundColor:
               theme.palette.mode === "light" ? alpha(colors.secondary[100], 0.8) : alpha(colors.secondary[700], 0.2),
-            borderRadius: "1rem",
+            borderRadius: "1.5rem",
             width: "3.5rem",
             height: "3.5rem",
             padding: "0.5rem",

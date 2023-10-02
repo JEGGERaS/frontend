@@ -34,7 +34,7 @@ const UserDropdown = (props: UserDropdownProps) => {
           width: "auto",
           maxWidth: "20rem",
           marginRight: "3rem",
-          borderRadius: isOpen ? "1rem 1rem 0 0" : "1rem",
+          borderRadius: isOpen ? "2rem 2rem 0 0" : "2rem",
           color:
             theme.palette.mode === "light" ? (isOpen ? colors.white[500] : colors.secondary[500]) : colors.white[500],
           backgroundColor: isOpen
@@ -92,8 +92,8 @@ const UserDropdown = (props: UserDropdownProps) => {
         sx={{
           "& .MuiPaper-root": {
             backgroundColor: colors.secondary[500],
-            borderBottomLeftRadius: "1rem",
-            borderBottomRightRadius: "1rem",
+            borderBottomLeftRadius: "2rem",
+            borderBottomRightRadius: "2rem",
             boxShadow: "none",
             padding: "0.5rem",
             marginTop: "-0.2rem",
@@ -108,7 +108,7 @@ const UserDropdown = (props: UserDropdownProps) => {
             onClick={handleClose}
             sx={{
               marginTop: "1rem",
-              borderRadius: "1rem",
+              borderRadius: "2rem",
               "&:hover": {
                 backgroundColor:
                   theme.palette.mode === "light"
@@ -150,7 +150,7 @@ const UserDropdown = (props: UserDropdownProps) => {
             onClick={handleClose}
             sx={{
               marginTop: "1rem",
-              borderRadius: "1rem",
+              borderRadius: "2rem",
               "&:hover": {
                 backgroundColor:
                   theme.palette.mode === "light"
