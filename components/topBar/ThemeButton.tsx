@@ -4,7 +4,6 @@ import { WbSunnyRounded, DarkModeRounded } from "@mui/icons-material";
 import { tokens } from "../../constants/color-palette";
 import { ColorModeContext } from "../../constants/themeConfiguration";
 
-
 const ThemeButton = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -40,7 +39,7 @@ const ThemeButton = () => {
         />
       ) : (
         <DarkModeRounded
-        data-testid="theme-button-dark"
+          data-testid="theme-button-dark"
           sx={{
             color: alpha(colors.white[500], 0.8),
             backgroundColor: alpha(colors.black[100], 0.2),

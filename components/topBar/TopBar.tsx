@@ -27,13 +27,15 @@ const TopBar = (props: TopBarProps) => {
       }}
     >
       <Box sx={{ marginLeft: "1rem", marginRight: "1rem" }}>
-        {props.page ? <Typography
-          variant="h2"
-          color={theme.palette.mode === "light" ? colors.black[700] : colors.white[500]}
-          sx={{ fontWeight: "600" }}
-        >
-          {props.page}
-        </Typography> : null}
+        {props.page ? (
+          <Typography
+            variant="h2"
+            color={theme.palette.mode === "light" ? colors.black[700] : colors.white[500]}
+            sx={{ fontWeight: "600" }}
+          >
+            {props.page}
+          </Typography>
+        ) : null}
       </Box>
       <Box
         sx={{
@@ -43,7 +45,7 @@ const TopBar = (props: TopBarProps) => {
           alignItems: "center",
         }}
       >
-        <ThemeButton/>
+        <ThemeButton />
         <NotificationButton theme={theme.palette.mode} amount={100} />
         <UserDropdown firstName="Łukasz" lastName="Kacperkowiak" />
       </Box>
