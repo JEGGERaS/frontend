@@ -29,13 +29,13 @@ const TopBar = (props: TopBarProps) => {
       }}
     >
       <Box sx={{ marginLeft: "1rem", marginRight: "1rem" }}>
-        <Typography
+        (props.page ? <Typography
           variant="h2"
           color={theme.palette.mode === "light" ? colors.black[700] : colors.white[500]}
           sx={{ fontWeight: "600" }}
         >
-          {props.page ? props.page : "Sample text"}
-        </Typography>
+          {props.page}
+        </Typography> : null)
       </Box>
       <Box
         sx={{
