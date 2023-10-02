@@ -33,10 +33,10 @@ describe("TopBar", () => {
     const topBarAfter = screen.getByTestId("top-bar");
 
     waitFor(() => {
-        const themeButtonDark = screen.getByTestId("theme-button-dark");
-        expect(topBarAfter).toHaveStyle("background-color: #202020");
-        expect(themeButtonDark).toBeInTheDocument();
-        });
+      const themeButtonDark = screen.getByTestId("theme-button-dark");
+      expect(topBarAfter).toHaveStyle("background-color: #202020");
+      expect(themeButtonDark).toBeInTheDocument();
+    });
   });
 
   it("Check if NotificationButton renders correctly", () => {
@@ -49,7 +49,7 @@ describe("TopBar", () => {
   });
 
   it("Check if badge works correctly", () => {
-    render(<NotificationButton theme="light" amount={15} />)
+    render(<NotificationButton theme="light" amount={15} />);
     const notificationBadge = screen.getByTestId("notification-badge");
 
     expect(notificationBadge).toHaveTextContent("15");
@@ -69,18 +69,18 @@ describe("TopBar", () => {
     fireEvent.click(userDropdownButton);
 
     waitFor(() => {
-        const userDropdownMenu = screen.getByText("Ustawienia");
-        const userDropdown = screen.getByTestId("user-dropdown-menu");
-        expect(userDropdown).toBeVisible();
-        expect(userDropdownMenu).toBeInTheDocument();
-        });
+      const userDropdownMenu = screen.getByText("Ustawienia");
+      const userDropdown = screen.getByTestId("user-dropdown-menu");
+      expect(userDropdown).toBeVisible();
+      expect(userDropdownMenu).toBeInTheDocument();
+    });
 
     fireEvent.click(userDropdownButton);
 
     waitFor(() => {
-        const userDropdown = screen.getByTestId("user-dropdown-menu");
-        expect(userDropdown).not.toBeVisible();
-        });
+      const userDropdown = screen.getByTestId("user-dropdown-menu");
+      expect(userDropdown).not.toBeVisible();
+    });
   });
 
   it("Check if UserDropdown closes after clicking outside", () => {
@@ -90,18 +90,17 @@ describe("TopBar", () => {
     fireEvent.click(userDropdownButton);
 
     waitFor(() => {
-        const userDropdownMenu = screen.getByText("Ustawienia");
-        const userDropdown = screen.getByTestId("user-dropdown-menu");
-        expect(userDropdown).toBeVisible();
-        expect(userDropdownMenu).toBeInTheDocument();
-        });
+      const userDropdownMenu = screen.getByText("Ustawienia");
+      const userDropdown = screen.getByTestId("user-dropdown-menu");
+      expect(userDropdown).toBeVisible();
+      expect(userDropdownMenu).toBeInTheDocument();
+    });
 
     fireEvent.click(screen.getByTestId("top-bar"));
 
     waitFor(() => {
-        const userDropdown = screen.getByTestId("user-dropdown-menu");
-        expect(userDropdown).not.toBeVisible();
-        });
+      const userDropdown = screen.getByTestId("user-dropdown-menu");
+      expect(userDropdown).not.toBeVisible();
+    });
   });
-
 });
