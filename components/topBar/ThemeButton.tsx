@@ -4,11 +4,8 @@ import { WbSunnyRounded, DarkModeRounded } from "@mui/icons-material";
 import { tokens } from "../../constants/color-palette";
 import { ColorModeContext } from "../../constants/themeConfiguration";
 
-interface ThemeButtonProps {
-  theme: string;
-}
 
-const ThemeButton = (props: ThemeButtonProps) => {
+const ThemeButton = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -29,7 +26,7 @@ const ThemeButton = (props: ThemeButtonProps) => {
         },
       }}
     >
-      {props.theme === "light" ? (
+      {theme.palette.mode === "light" ? (
         <WbSunnyRounded
           data-testid="theme-button-light"
           sx={{

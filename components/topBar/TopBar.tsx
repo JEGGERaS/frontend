@@ -45,7 +45,7 @@ const TopBar = (props: TopBarProps) => {
           alignItems: "center",
         }}
       >
-        <ThemeButton theme={theme.palette.mode} />
+        <ThemeButton/>
         <NotificationButton theme={theme.palette.mode} amount={100} />
         <UserDropdown theme={theme.palette.mode} firstName="Łukasz" lastName="Kacperkowiak" />
       </Box>
