@@ -18,10 +18,8 @@ const TopBar = (props: TopBarProps) => {
       data-testid="top-bar"
       sx={{
         height: "7.2rem",
-        top: "0px",
         width: "100%",
         display: "flex",
-        flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: theme.palette.mode === "light" ? colors.white[500] : colors.black[500],
