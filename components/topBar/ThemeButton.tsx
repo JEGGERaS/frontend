@@ -18,7 +18,7 @@ const ThemeButton = () => {
         height: "3.5rem",
         padding: "0.5rem",
         marginRight: "1rem",
-        borderRadius: "1.5rem",
+        borderRadius: "1.25rem",
         "&:hover": {
           backgroundColor:
             theme.palette.mode === "light" ? alpha(colors.primary[500], 0.8) : alpha(colors.black[300], 0.2),
@@ -31,7 +31,7 @@ const ThemeButton = () => {
           sx={{
             color: alpha(colors.primary[500], 0.8),
             backgroundColor: alpha(colors.primary[100], 0.9),
-            borderRadius: "1.5rem",
+            borderRadius: "1.25rem",
             width: "3.5rem",
             height: "3.5rem",
             padding: "0.5rem",
@@ -43,7 +43,7 @@ const ThemeButton = () => {
           sx={{
             color: alpha(colors.white[500], 0.8),
             backgroundColor: alpha(colors.black[100], 0.2),
-            borderRadius: "1.5rem",
+            borderRadius: "1.25rem",
             width: "3.5rem",
             height: "3.5rem",
             padding: "0.5rem",
