@@ -1,7 +1,5 @@
-import theme from "../constants/color-palette";
+import SideBar from "@/components/sideBar/SideBar";
 
 export default function Home() {
-  return (
-    <div style={{ fontFamily: theme.typography.fontFamily }}>hello world</div>
-  );
+  return <SideBar />;
 }
