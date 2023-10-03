@@ -4,14 +4,7 @@ import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
-import {
-  Box,
-  Button,
-  Collapse,
-  MenuList,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Collapse, MenuList, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../constants/color-palette";
 import HorizontalDivider from "../common/HorizontalDivider";

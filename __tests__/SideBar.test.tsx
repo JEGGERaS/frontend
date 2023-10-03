@@ -27,6 +27,7 @@ describe("SideBar", () => {
   it("Should call setSelected with correct argument when clicked", () => {
     const setSelectedMock = jest.fn();
     const props = {
+      collapsed: false,
       selected: "Item 1",
       title: "Item 2",
       icon: <div>Icon</div>,
