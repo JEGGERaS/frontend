@@ -28,7 +28,7 @@ const UserDropdown = (props: UserDropdownProps) => {
               maxWidth: "20rem",
               marginRight: "3rem",
               borderRadius: popupState.isOpen ? "2rem 2rem 0 0" : "2rem",
-              transition: "border-radius 0.35s ease-in-out",
+              transition: "border-radius 0.4s ease-in-out",
               color:
                 theme.palette.mode === "light"
                   ? popupState.isOpen
@@ -84,8 +84,8 @@ const UserDropdown = (props: UserDropdownProps) => {
           </Button>
           <Menu
             {...bindMenu(popupState)}
-            transitionDuration={350}
-            TransitionProps={{ timeout: 500 }}
+            transitionDuration={{enter: 350, exit: 200}}
+            TransitionProps={{ timeout: {enter: 500, exit: 200 }}}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
