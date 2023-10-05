@@ -1,4 +1,4 @@
-import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, colors, useTheme } from "@mui/material";
+import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../constants/color-palette";
 import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded } from "@mui/icons-material";
@@ -28,17 +28,16 @@ const UserDropdown = (props: UserDropdownProps) => {
               maxWidth: "20rem",
               marginRight: "3rem",
               borderRadius: popupState.isOpen ? "2rem 2rem 0 0" : "2rem",
+              transition: "border-radius 0.35s ease-in-out",
               color:
                 theme.palette.mode === "light"
                   ? popupState.isOpen
                     ? colors.white[500]
                     : colors.secondary[500]
                   : colors.white[500],
-              backgroundColor: popupState.isOpen
-                ? colors.secondary[500]
-                : theme.palette.mode === "light"
-                ? colors.secondary[100]
-                : alpha(colors.secondary[700], 0.2),
+              backgroundColor : theme.palette.mode === "light" ? 
+              popupState.isOpen ? colors.secondary[500] : colors.secondary[100] :
+              popupState.isOpen ? colors.secondary[700] : alpha(colors.secondary[700], 0.2),
               boxShadow: "none",
               "&:hover": {
                 backgroundColor:
@@ -85,17 +84,19 @@ const UserDropdown = (props: UserDropdownProps) => {
           </Button>
           <Menu
             {...bindMenu(popupState)}
+            transitionDuration={350}
+            TransitionProps={{ timeout: 500 }}
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: 'bottom',
+              horizontal: 'center',
             }}
             transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
+              vertical: 'top',
+              horizontal: 'center',
             }}
             sx={{
               "& .MuiPaper-root": {
-                backgroundColor: colors.secondary[500],
+                backgroundColor: theme.palette.mode === "light" ?colors.secondary[500] : colors.secondary[700],
                 borderBottomLeftRadius: "2rem",
                 borderBottomRightRadius: "2rem",
                 boxShadow: "none",
