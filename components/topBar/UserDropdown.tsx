@@ -35,9 +35,14 @@ const UserDropdown = (props: UserDropdownProps) => {
                     ? colors.white[500]
                     : colors.secondary[500]
                   : colors.white[500],
-              backgroundColor : theme.palette.mode === "light" ? 
-              popupState.isOpen ? colors.secondary[500] : colors.secondary[100] :
-              popupState.isOpen ? colors.secondary[700] : alpha(colors.secondary[700], 0.2),
+              backgroundColor:
+                theme.palette.mode === "light"
+                  ? popupState.isOpen
+                    ? colors.secondary[500]
+                    : colors.secondary[100]
+                  : popupState.isOpen
+                  ? colors.secondary[700]
+                  : alpha(colors.secondary[700], 0.2),
               boxShadow: "none",
               "&:hover": {
                 backgroundColor:
@@ -84,19 +89,18 @@ const UserDropdown = (props: UserDropdownProps) => {
           </Button>
           <Menu
             {...bindMenu(popupState)}
-            transitionDuration={{enter: 350, exit: 200}}
-            TransitionProps={{ timeout: {enter: 500, exit: 200 }}}
+            TransitionProps={{ timeout: { enter: 500, exit: 200 } }}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
+              vertical: "bottom",
+              horizontal: "center",
             }}
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
+              vertical: "top",
+              horizontal: "center",
             }}
             sx={{
               "& .MuiPaper-root": {
-                backgroundColor: theme.palette.mode === "light" ?colors.secondary[500] : colors.secondary[700],
+                backgroundColor: theme.palette.mode === "light" ? colors.secondary[500] : colors.secondary[700],
                 borderBottomLeftRadius: "2rem",
                 borderBottomRightRadius: "2rem",
                 boxShadow: "none",

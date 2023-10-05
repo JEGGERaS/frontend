@@ -4,14 +4,7 @@ import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
-import {
-  Box,
-  Button,
-  Collapse,
-  MenuList,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Collapse, MenuList, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../constants/color-palette";
 import HorizontalDivider from "../common/HorizontalDivider";
@@ -31,6 +24,7 @@ const SideBar = () => {
     <Box
       width={isCollapsed ? "4rem" : "15rem"}
       height="100vh"
+      minWidth={isCollapsed ? "4rem" : "15rem"}
       bgcolor={theme.palette.primary.main}
       display="flex"
       flexDirection="column"
@@ -39,20 +33,8 @@ const SideBar = () => {
         transition: "width linear 0.3s",
       }}
     >
-      <Box
-        width="100%"
-        height="7rem"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        overflow="clip"
-      >
-        <Collapse
-          in={!isCollapsed}
-          orientation="horizontal"
-          collapsedSize={20}
-          timeout={700}
-        >
+      <Box width="100%" height="7rem" display="flex" justifyContent="center" alignItems="center" overflow="clip">
+        <Collapse in={!isCollapsed} orientation="horizontal" collapsedSize={20} timeout={700}>
           <Typography variant="h1" fontWeight="bold" color={colors.black[900]}>
             JEGGER
           </Typography>

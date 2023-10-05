@@ -18,7 +18,7 @@ const TopBar = (props: TopBarProps) => {
       data-testid="top-bar"
       sx={{
         height: "7.2rem",
-        width: "85%",
+        width: "100%",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
