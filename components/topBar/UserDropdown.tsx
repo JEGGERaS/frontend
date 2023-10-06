@@ -6,8 +6,7 @@ import HorizontalDivider from "../common/HorizontalDivider";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 
 interface UserDropdownProps {
-  firstName: string;
-  lastName: string;
+  user: string;
 }
 
 const UserDropdown = (props: UserDropdownProps) => {
@@ -78,7 +77,7 @@ const UserDropdown = (props: UserDropdownProps) => {
                     : colors.white[500],
               }}
             >
-              {props.firstName} {props.lastName}
+              {props.user}
             </Typography>
             <ExpandMore
               sx={{

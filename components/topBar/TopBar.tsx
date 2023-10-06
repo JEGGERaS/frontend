@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, alpha, useTheme } from "@mui/material";
 import { tokens } from "../../constants/color-palette";
 import ThemeButton from "./ThemeButton";
 import NotificationButton from "./NotificationButton";
@@ -23,7 +23,9 @@ const TopBar = (props: TopBarProps) => {
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: theme.palette.mode === "light" ? colors.white[500] : colors.black[500],
-        borderBottom: `2px solid ${colors.black[100]}`,
+        borderBottom: `2px solid ${
+          theme.palette.mode === "light" ? alpha(colors.black[500], 0.05) : alpha(colors.white[500], 0.05)
+        }`,
       }}
     >
       <Box sx={{ marginLeft: "1rem", marginRight: "1rem" }}>
@@ -47,7 +49,7 @@ const TopBar = (props: TopBarProps) => {
       >
         <ThemeButton />
         <NotificationButton theme={theme.palette.mode} amount={100} />
-        <UserDropdown firstName="Łukasz" lastName="Kacperkowiak" />
+        <UserDropdown user="Łukasz Kacperkowiak" />
       </Box>
     </Box>
   );
