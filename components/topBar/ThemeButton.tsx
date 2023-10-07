@@ -13,6 +13,7 @@ const ThemeButton = () => {
     <IconButton
       data-testid="theme-button"
       onClick={colorMode.toggleColorMode}
+      color = {theme.palette.mode === "light" ? "primary" : "inherit"}
       sx={{
         width: "3.5rem",
         height: "3.5rem",

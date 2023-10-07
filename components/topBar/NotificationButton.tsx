@@ -16,7 +16,7 @@ const NotificationButton = (props: NotificationButtonProps) => {
     <IconButton
       aria-label="show new notifications"
       data-testid="notification-button"
-      color="inherit"
+      color="secondary"
       sx={{
         width: "3.5rem",
         height: "3.5rem",
