@@ -7,6 +7,7 @@ import UserDropdown from "./UserDropdown";
 
 interface TopBarProps {
   page: string;
+  handleSettingsClick: () => void;
 }
 
 const TopBar = (props: TopBarProps) => {
@@ -49,7 +50,7 @@ const TopBar = (props: TopBarProps) => {
       >
         <ThemeButton />
         <NotificationButton theme={theme.palette.mode} amount={100} />
-        <UserDropdown user="Łukasz Kacperkowiak" />
+        <UserDropdown user="Łukasz Kacperkowiak" handleSettingsClick={props.handleSettingsClick}/>
       </Box>
     </Box>
   );
