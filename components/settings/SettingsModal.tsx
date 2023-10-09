@@ -3,7 +3,7 @@ import { tokens } from "../../constants/color-palette";
 import { Box, Button, IconButton, Modal, TextField, Typography, alpha, useTheme } from "@mui/material";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import HorizontalDivider from "../common/HorizontalDivider";
-import SettingsTextField from "./SettingsTextField";
+import CustomTextField from "./CustomTextField";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -64,10 +64,10 @@ const SettingsModal = (props: SettingsModalProps) => {
             flexDirection: "column",
           }}
         >
-            <SettingsTextField user={props.user} label={"imie"}/>
-            <SettingsTextField user={props.user} label={"nazwisko"}/>
-            <SettingsTextField user={props.user} label={"stanowisko"}/>
-            <SettingsTextField user={props.user} label={"email"}/>
+            <CustomTextField user={props.user} label={"imie"}/>
+            <CustomTextField user={props.user} label={"nazwisko"}/>
+            <CustomTextField user={props.user} label={"stanowisko"}/>
+            <CustomTextField user={props.user} label={"email"}/>
         </Box>
         <Box sx={{
             display:"flex",
