@@ -3,7 +3,7 @@ import { tokens } from "../../constants/color-palette";
 import React from "react";
 
 interface CustomTextFieldProps {
-  user: string;
+  value: string;
   label: string;
 }
 
@@ -24,7 +24,7 @@ const CustomTextField = (props: CustomTextFieldProps) => {
           color: theme.palette.mode === "light" ? colors.secondary[500] : colors.secondary[100],
         },
       }}
-      value={props.user}
+      value={props.value}
       label={props.label}
       variant="standard"
       sx={{
@@ -36,6 +36,7 @@ const CustomTextField = (props: CustomTextFieldProps) => {
           WebkitTextFillColor: theme.palette.mode === "light"? colors.black[500]:colors.black[100], //kolor fontu w input
           fontWeight: "600",
           fontSize: "1.5rem",
+          cursor: "text"
         },
       }}
     />

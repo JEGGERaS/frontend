@@ -65,10 +65,10 @@ const SettingsModal = (props: SettingsModalProps) => {
             margin:"1.5rem 0 1.5rem 0"
           }}
         >
-            <CustomTextField user={"Filip"} label={"imie"}/>
-            <CustomTextField user={"Majewski"} label={"nazwisko"}/>
-            <CustomTextField user={"Developer"} label={"stanowisko"}/>
-            <CustomTextField user={"costam@gmail.com"} label={"email"}/>
+            <CustomTextField value={"Filip"} label={"imie"}/>
+            <CustomTextField value={"Majewski"} label={"nazwisko"}/>
+            <CustomTextField value={"Developer"} label={"stanowisko"}/>
+            <CustomTextField value={"costam@gmail.com"} label={"email"}/>
         </Box>
         <Box sx={{
             display:"flex",
@@ -84,6 +84,10 @@ const SettingsModal = (props: SettingsModalProps) => {
             paddingTop:"0.75rem",
             paddingBottom:"0.75rem",
             color: colors.white[500],
+            "&:hover": {
+              backgroundColor:
+                theme.palette.mode === "light" ? alpha(colors.secondary[300], 0.8) : alpha(colors.secondary[700], 0.8),
+            },
         }}>
             <Typography variant="h3" sx={{fontWeight:"600"}}>zmiana hasła</Typography>
         </Button>
