@@ -24,7 +24,7 @@ const SettingsModal = (props: SettingsModalProps) => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "33rem",
-          height: "36rem",
+          //height: "36rem",
           border: `2px solid ${
             theme.palette.mode === "light" ? alpha(colors.black[500], 0.05) : alpha(colors.white[500], 0.05)
           }`,
@@ -62,12 +62,13 @@ const SettingsModal = (props: SettingsModalProps) => {
             justifyContent: "center",
             alignItems: "space-evenly",
             flexDirection: "column",
+            margin:"1.5rem 0 1.5rem 0"
           }}
         >
-            <CustomTextField user={props.user} label={"imie"}/>
-            <CustomTextField user={props.user} label={"nazwisko"}/>
-            <CustomTextField user={props.user} label={"stanowisko"}/>
-            <CustomTextField user={props.user} label={"email"}/>
+            <CustomTextField user={"Filip"} label={"imie"}/>
+            <CustomTextField user={"Majewski"} label={"nazwisko"}/>
+            <CustomTextField user={"Developer"} label={"stanowisko"}/>
+            <CustomTextField user={"costam@gmail.com"} label={"email"}/>
         </Box>
         <Box sx={{
             display:"flex",
@@ -79,10 +80,12 @@ const SettingsModal = (props: SettingsModalProps) => {
             width:"90%",
             borderRadius:"0.5rem",
             marginTop:"2rem",
+            marginBottom:"2rem",
             paddingTop:"0.75rem",
             paddingBottom:"0.75rem",
+            color: colors.white[500],
         }}>
-            <Typography variant="h3">zmiana hasła</Typography>
+            <Typography variant="h3" sx={{fontWeight:"600"}}>zmiana hasła</Typography>
         </Button>
         </Box>
       </Box>

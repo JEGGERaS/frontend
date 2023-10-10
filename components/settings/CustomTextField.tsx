@@ -14,17 +14,13 @@ const CustomTextField = (props: CustomTextFieldProps) => {
   return (
     <TextField
       id="outlined-basic"
-      InputProps={{ disableUnderline: true, disabled:true, sx:{
-        "& input.Mui-disabled": {
-          color: "green"
-        },
-      }}}
+      InputProps={{ disableUnderline: true, disabled:true}}
       InputLabelProps={{
         sx: {
           marginLeft: "1rem",
           top: "-0.5rem",
-          fontWeight: "bold",
           textTransform: "uppercase",
+          fontWeight: "600",
           color: theme.palette.mode === "light" ? colors.secondary[500] : colors.secondary[100],
         },
       }}
@@ -32,10 +28,15 @@ const CustomTextField = (props: CustomTextFieldProps) => {
       label={props.label}
       variant="standard"
       sx={{
-        margin: "2rem 2rem 0 2rem",
+        margin: "2rem 1.5rem 0 1.5rem",
         backgroundColor: alpha(colors.primary[500], 0.2),
         padding: "0rem 1rem 0.5rem 1rem",
-        borderRadius: "1rem",
+        borderRadius: "0.5rem",
+        "& .MuiInputBase-input.Mui-disabled": {
+          WebkitTextFillColor: theme.palette.mode === "light"? colors.black[500]:colors.black[100], //kolor fontu w input
+          fontWeight: "600",
+          fontSize: "1.5rem",
+        },
       }}
     />
   );
