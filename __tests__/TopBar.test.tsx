@@ -1,8 +1,6 @@
-import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import TopBar from "@/components/topBar/TopBar";
-import { alpha, colors } from "@mui/material";
 import NotificationButton from "@/components/topBar/NotificationButton";
+import TopBar from "@/components/topBar/TopBar";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 describe("TopBar", () => {
   it("Check if TopBar renders correctly", () => {
