@@ -5,21 +5,21 @@ import NotificationButton from "@/components/topBar/NotificationButton";
 
 describe("TopBar", () => {
   it("Check if TopBar renders correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const pageElement = screen.getByText("Sample");
 
     expect(pageElement).toBeInTheDocument();
   });
 
   it("Check if ThemeButton renders correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const themeButton = screen.getByTestId("theme-button");
 
     expect(themeButton).toBeInTheDocument();
   });
 
   it("Check if ThemeButton changes theme correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const themeButton = screen.getByTestId("theme-button");
     const themeButtonLight = screen.getByTestId("theme-button-light");
     const topBar = screen.getByTestId("top-bar");
@@ -39,7 +39,7 @@ describe("TopBar", () => {
   });
 
   it("Check if NotificationButton renders correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const notificationButton = screen.getByTestId("notification-button");
     const notificationBadge = screen.getByTestId("notification-badge");
 
@@ -55,14 +55,14 @@ describe("TopBar", () => {
   });
 
   it("Check if UserDropdown renders correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     expect(userDropdownButton).toBeInTheDocument();
   });
 
   it("Check if UserDropdown opens correctly", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     fireEvent.click(userDropdownButton);
@@ -83,7 +83,7 @@ describe("TopBar", () => {
   });
 
   it("Check if UserDropdown closes after clicking outside", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     fireEvent.click(userDropdownButton);
@@ -104,7 +104,7 @@ describe("TopBar", () => {
   });
 
   it("Check if UserDropdown closes after clicking on settings", () => {
-    render(<TopBar page="Sample" handleSettingsClick={function (): void {} } />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     fireEvent.click(userDropdownButton);
