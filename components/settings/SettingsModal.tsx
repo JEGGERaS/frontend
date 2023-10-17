@@ -65,10 +65,10 @@ const SettingsModal = (props: SettingsModalProps) => {
             margin:"1.5rem 0 1.5rem 0"
           }}
         >
-            <CustomTextField value={"Filip"} label={"imie"}/>
-            <CustomTextField value={"Majewski"} label={"nazwisko"}/>
-            <CustomTextField value={"Developer"} label={"stanowisko"}/>
-            <CustomTextField value={"costam@gmail.com"} label={"email"}/>
+            <CustomTextField value={props.user} label={"imie"}/>
+            <CustomTextField value={props.user} label={"nazwisko"}/>
+            <CustomTextField value={props.user} label={"stanowisko"}/>
+            <CustomTextField value={props.user} label={"email"}/>
         </Box>
         <Box sx={{
             display:"flex",
