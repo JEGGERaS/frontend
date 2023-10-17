@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import SideBar from "../sideBar/SideBar";
 import TopBar from "../topBar/TopBar";
-import Card from "./Card";
 
 interface LayoutProps {
   page: string;
@@ -21,7 +21,9 @@ const Layout = (props: LayoutProps) => {
       <Box width="100%" display="flex" flexDirection="column">
         <TopBar page={props.page} />
         <Box width="100%" padding="2rem 1.5rem">
-          {props.children}
+          <Grid container spacing={3}>
+            {props.children}
+          </Grid>
         </Box>
       </Box>
     </Box>

@@ -31,7 +31,6 @@ export default function Home() {
 
   return (
     <Layout page={"Home"}>
-      <Grid container spacing={3}>
         <Grid xs={4}>
           <Card bgcolor={alpha(theme.palette.secondary.main, 0.2)} >
             <Box width="100%" display="flex" flexDirection="column">
@@ -59,6 +58,9 @@ export default function Home() {
                 color="secondary"
                 sx={{
                   borderRadius: "0.5rem",
+                  "&:hover": {
+                    bgcolor: colors.secondary[600]
+                  }
                 }}
               >
                 <Typography
@@ -88,7 +90,6 @@ export default function Home() {
             </Box>
           </Card>
         </Grid>
-      </Grid>
     </Layout>
   );
 }

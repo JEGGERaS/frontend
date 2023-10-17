@@ -44,8 +44,8 @@ const UserDropdown = (props: UserDropdownProps) => {
               "&:hover": {
                 backgroundColor:
                   theme.palette.mode === "light"
-                    ? alpha(colors.secondary[200], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
+                    ? alpha(colors.secondary[200], 0.9)
+                    : alpha(colors.secondary[700], 0.9),
                 boxShadow: "none",
               },
             }}
