@@ -16,7 +16,7 @@ const SettingsModal = (props: SettingsModalProps) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Modal open={props.isOpen} onClose={props.onClose}>
+    <Modal open={props.isOpen} onClose={props.onClose} data-testid="settings-modal">
       <Box
         sx={{
           position: "absolute",

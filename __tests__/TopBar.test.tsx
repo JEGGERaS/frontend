@@ -116,7 +116,9 @@ describe("TopBar", () => {
 
       waitFor(() => {
         const userDropdown = screen.getByTestId("user-dropdown-menu");
+        const userSettingsModal = screen.getByTestId("settings-modal");
         expect(userDropdown).not.toBeVisible();
+        expect(userSettingsModal).toBeVisible();
       })
     })
   });
