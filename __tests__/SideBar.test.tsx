@@ -33,7 +33,7 @@ describe("SideBar", () => {
       setSelected: setSelectedMock,
     };
 
-    const { getByText } = render(<Item {...props} />);
+    const { getByText } = render(<Item collapsed={false} {...props} />);
     fireEvent.click(getByText("Item 2"));
 
     expect(setSelectedMock).toHaveBeenCalledWith("Item 2");

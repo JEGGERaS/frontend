@@ -115,6 +115,7 @@ const UserDropdown = (props: UserDropdownProps) => {
             <MenuList data-testid="user-dropdown-menu">
               <HorizontalDivider variant="middle" bgColor={colors.black[100]} />
               <MenuItem
+              data-testid="settings-open-dropdown-item"
                 onClick={() => {
                   props.handleSettingsClick();
                   popupState.close();
