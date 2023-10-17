@@ -1,6 +1,6 @@
 import Card from "@/components/common/Card";
 import Layout from "@/components/common/Layout";
-import { alpha, Box, Button, Paper, styled, Typography, useTheme } from "@mui/material";
+import { alpha, Box, Button, Typography, useTheme } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { tokens } from "constants/color-palette";
 import Image from "next/image";
