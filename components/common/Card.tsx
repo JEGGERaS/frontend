@@ -1,5 +1,5 @@
-import { Box, Paper, useTheme } from "@mui/material";
-import { tokens } from "constants/color-palette";
+import { Box, useTheme } from "@mui/material";
+import { tokens } from "../../constants/color-palette";
 
 interface CardProps {
   children: JSX.Element | JSX.Element[];
@@ -16,9 +16,7 @@ const Card = (props: CardProps) => {
       bgcolor={props.bgcolor ? props.bgcolor : colors.white[500]}
       borderRadius="0.8rem"
       padding="1rem"
-      boxShadow={`0px 1px 6px -3px ${
-        props.shadowColor ? props.shadowColor : colors.black[500]
-      }`}
+      boxShadow={`0px 1px 6px -3px ${props.shadowColor ? props.shadowColor : colors.black[500]}`}
     >
       {props.children}
     </Box>
