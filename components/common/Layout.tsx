@@ -5,7 +5,7 @@ import TopBar from "../topBar/TopBar";
 
 interface LayoutProps {
   page: string;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 const Layout = (props: LayoutProps) => {

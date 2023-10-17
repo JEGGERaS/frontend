@@ -12,17 +12,6 @@ const Card = (props: CardProps) => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    // <Paper
-    //   variant="elevation"
-    //   elevation={1}
-    //   sx={{
-    //     bgcolor: props.bgcolor ? props.bgcolor : colors.white[500],
-    //     borderRadius: "1rem",
-    //     padding: "1rem",
-    //   }}
-    // >
-    //   {props.children}
-    // </Paper>
     <Box
       bgcolor={props.bgcolor ? props.bgcolor : colors.white[500]}
       borderRadius="0.8rem"
