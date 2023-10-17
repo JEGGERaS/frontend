@@ -24,7 +24,6 @@ const SettingsModal = (props: SettingsModalProps) => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "33rem",
-          //height: "36rem",
           border: `2px solid ${
             theme.palette.mode === "light" ? alpha(colors.black[500], 0.05) : alpha(colors.white[500], 0.05)
           }`,
@@ -41,8 +40,7 @@ const SettingsModal = (props: SettingsModalProps) => {
             margin: "1rem 1rem 0.5rem 1rem",
           }}
         >
-          <Typography variant="h3" sx={{ marginLeft: "1rem" }}>
-            {" "}
+          <Typography variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
             Ustawienia{" "}
           </Typography>
           <IconButton
