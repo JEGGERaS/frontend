@@ -26,7 +26,7 @@ export default function Home() {
             </Typography>
           </Box>
           <Box marginTop="1.5rem" width="100%">
-            <Typography width="85%" variant="h4" fontWeight="500" textAlign="left">
+            <Typography width="85%" variant="h4" fontWeight="500" align="justify" >
               Jeśli potrzebujesz wsparcia w obsłudze systemu, skorzystaj z naszego szybkiego poradnika. Życzymy owocnej
               pracy!
             </Typography>
@@ -51,7 +51,7 @@ export default function Home() {
       </Grid>
       <Grid xs={8}>
         <Card>
-          <Box>
+          <Box display="flex" justifyContent="center" overflow="hidden" >
             <Image height={300} width={700} src={sketchPhoto} alt={""} />
           </Box>
         </Card>
