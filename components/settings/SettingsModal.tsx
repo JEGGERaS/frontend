@@ -41,7 +41,7 @@ const SettingsModal = (props: SettingsModalProps) => {
           }}
         >
           <Typography variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
-            Ustawienia{" "}
+            Ustawienia
           </Typography>
           <IconButton
             onClick={props.onClose}
@@ -60,35 +60,43 @@ const SettingsModal = (props: SettingsModalProps) => {
             justifyContent: "center",
             alignItems: "space-evenly",
             flexDirection: "column",
-            margin:"1.5rem 0 1.5rem 0"
+            margin: "1.5rem 0 1.5rem 0",
           }}
         >
-            <CustomTextField value={props.user} label={"imie"}/>
-            <CustomTextField value={props.user} label={"nazwisko"}/>
-            <CustomTextField value={props.user} label={"stanowisko"}/>
-            <CustomTextField value={props.user} label={"email"}/>
+          <CustomTextField value={props.user} label={"imie"} />
+          <CustomTextField value={props.user} label={"nazwisko"} />
+          <CustomTextField value={props.user} label={"stanowisko"} />
+          <CustomTextField value={props.user} label={"email"} />
         </Box>
-        <Box sx={{
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-        }}>
-        <Button sx={{
-            backgroundColor:colors.secondary[500],
-            width:"90%",
-            borderRadius:"0.5rem",
-            marginTop:"2rem",
-            marginBottom:"2rem",
-            paddingTop:"0.75rem",
-            paddingBottom:"0.75rem",
-            color: colors.white[500],
-            "&:hover": {
-              backgroundColor:
-                theme.palette.mode === "light" ? alpha(colors.secondary[300], 0.8) : alpha(colors.secondary[700], 0.8),
-            },
-        }}>
-            <Typography variant="h3" sx={{fontWeight:"600"}}>zmiana hasła</Typography>
-        </Button>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            sx={{
+              backgroundColor: colors.secondary[500],
+              width: "90%",
+              borderRadius: "0.5rem",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              paddingTop: "0.75rem",
+              paddingBottom: "0.75rem",
+              color: colors.white[500],
+              "&:hover": {
+                backgroundColor:
+                  theme.palette.mode === "light"
+                    ? alpha(colors.secondary[300], 0.8)
+                    : alpha(colors.secondary[700], 0.8),
+              },
+            }}
+          >
+            <Typography variant="h3" sx={{ fontWeight: "600" }}>
+              zmiana hasła
+            </Typography>
+          </Button>
         </Box>
       </Box>
     </Modal>
