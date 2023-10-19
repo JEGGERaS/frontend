@@ -35,7 +35,7 @@ export default function Home() {
               variant="contained"
               color="secondary"
               sx={{
-                borderRadius: "0.5rem",
+                borderRadius: "0.6rem",
                 "&:hover": {
                   bgcolor: colors.secondary[600],
                 },
