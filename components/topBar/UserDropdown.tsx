@@ -1,12 +1,14 @@
 import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, useTheme } from "@mui/material";
 import React from "react";
 import { tokens } from "../../constants/color-palette";
-import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded } from "@mui/icons-material";
+import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded, Settings } from "@mui/icons-material";
 import HorizontalDivider from "../common/HorizontalDivider";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
+import SettingsModal from "../settings/SettingsModal";
 
 interface UserDropdownProps {
   user: string;
+  handleSettingsClick: () => void;
 }
 
 const UserDropdown = (props: UserDropdownProps) => {
@@ -113,7 +115,11 @@ const UserDropdown = (props: UserDropdownProps) => {
             <MenuList data-testid="user-dropdown-menu">
               <HorizontalDivider variant="middle" bgColor={colors.black[100]} />
               <MenuItem
-                onClick={popupState.close}
+              data-testid="settings-open-dropdown-item"
+                onClick={() => {
+                  props.handleSettingsClick();
+                  popupState.close();
+                }} 
                 sx={{
                   marginTop: "1rem",
                   borderRadius: "2rem",

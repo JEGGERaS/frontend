@@ -1,26 +1,25 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import TopBar from "@/components/topBar/TopBar";
-import { alpha, colors } from "@mui/material";
 import NotificationButton from "@/components/topBar/NotificationButton";
 
 describe("TopBar", () => {
   it("Check if TopBar renders correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const pageElement = screen.getByText("Sample");
 
     expect(pageElement).toBeInTheDocument();
   });
 
   it("Check if ThemeButton renders correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const themeButton = screen.getByTestId("theme-button");
 
     expect(themeButton).toBeInTheDocument();
   });
 
   it("Check if ThemeButton changes theme correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const themeButton = screen.getByTestId("theme-button");
     const themeButtonLight = screen.getByTestId("theme-button-light");
     const topBar = screen.getByTestId("top-bar");
@@ -40,7 +39,7 @@ describe("TopBar", () => {
   });
 
   it("Check if NotificationButton renders correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const notificationButton = screen.getByTestId("notification-button");
     const notificationBadge = screen.getByTestId("notification-badge");
 
@@ -56,14 +55,14 @@ describe("TopBar", () => {
   });
 
   it("Check if UserDropdown renders correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     expect(userDropdownButton).toBeInTheDocument();
   });
 
   it("Check if UserDropdown opens correctly", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     fireEvent.click(userDropdownButton);
@@ -84,7 +83,7 @@ describe("TopBar", () => {
   });
 
   it("Check if UserDropdown closes after clicking outside", () => {
-    render(<TopBar page="Sample" />);
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const userDropdownButton = screen.getByTestId("user-dropdown-button");
 
     fireEvent.click(userDropdownButton);
@@ -102,5 +101,25 @@ describe("TopBar", () => {
       const userDropdown = screen.getByTestId("user-dropdown-menu");
       expect(userDropdown).not.toBeVisible();
     });
+  });
+
+  it("Check if UserDropdown closes after clicking on settings", () => {
+    render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
+    const userDropdownButton = screen.getByTestId("user-dropdown-button");
+
+    fireEvent.click(userDropdownButton);
+
+    waitFor(() => {
+      const settingsButton = screen.getByTestId("settings-open-dropdown-item");
+      expect(settingsButton).toBeVisible();
+      fireEvent.click(settingsButton);
+
+      waitFor(() => {
+        const userDropdown = screen.getByTestId("user-dropdown-menu");
+        const userSettingsModal = screen.getByTestId("settings-modal");
+        expect(userDropdown).not.toBeVisible();
+        expect(userSettingsModal).toBeVisible();
+      })
+    })
   });
 });
