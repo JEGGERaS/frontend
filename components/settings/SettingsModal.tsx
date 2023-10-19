@@ -1,7 +1,6 @@
-import React from "react";
-import { tokens } from "../../constants/color-palette";
-import { Box, Button, IconButton, Modal, TextField, Typography, alpha, useTheme } from "@mui/material";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
+import { Box, Button, IconButton, Modal, Typography, alpha, useTheme } from "@mui/material";
+import { tokens } from "../../constants/color-palette";
 import HorizontalDivider from "../common/HorizontalDivider";
 import CustomTextField from "./CustomTextField";
 

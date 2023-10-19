@@ -1,10 +1,7 @@
+import { ExpandMore, LogoutRounded, PersonRounded, SettingsRounded } from "@mui/icons-material";
 import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, useTheme } from "@mui/material";
-import React from "react";
-import { tokens } from "../../constants/color-palette";
-import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded, Settings } from "@mui/icons-material";
-import HorizontalDivider from "../common/HorizontalDivider";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
-import SettingsModal from "../settings/SettingsModal";
+import { tokens } from "../../constants/color-palette";
 
 interface UserDropdownProps {
   user: string;
@@ -28,8 +25,8 @@ const UserDropdown = (props: UserDropdownProps) => {
               width: "auto",
               maxWidth: "20rem",
               marginRight: "3rem",
-              borderRadius: popupState.isOpen ? "2rem 2rem 0 0" : "2rem",
-              transition: "border-radius 0.4s ease-in-out",
+              borderRadius: popupState.isOpen ? "1.5rem 1.5rem 0.4rem 0.4rem" : "1.5rem",
+              transition: "border-radius 0.25s ease-in-out",
               color:
                 theme.palette.mode === "light"
                   ? popupState.isOpen
@@ -89,6 +86,7 @@ const UserDropdown = (props: UserDropdownProps) => {
             />
           </Button>
           <Menu
+            MenuListProps={{ sx: { padding: 0 } }}
             {...bindMenu(popupState)}
             TransitionProps={{ timeout: { enter: 500, exit: 200 } }}
             anchorOrigin={{
@@ -101,33 +99,31 @@ const UserDropdown = (props: UserDropdownProps) => {
             }}
             sx={{
               "& .MuiPaper-root": {
-                backgroundColor: theme.palette.mode === "light" ? colors.secondary[500] : colors.secondary[700],
-                borderBottomLeftRadius: "2rem",
-                borderBottomRightRadius: "2rem",
+                backgroundColor:
+                  theme.palette.mode === "light" ? colors.secondary[500] : alpha(colors.secondary[700], 0.8),
+                borderRadius: "0.4rem 0.4rem 1.5rem 1.5rem",
                 boxShadow: "none",
-                padding: "0.5rem",
-                marginTop: "-0.2rem",
-                backgroundImage: "none",
+                marginTop: "0.2rem",
                 width: popupState.anchorEl ? popupState.anchorEl.clientWidth : "auto",
               },
             }}
           >
-            <MenuList data-testid="user-dropdown-menu">
-              <HorizontalDivider variant="middle" bgColor={colors.black[100]} />
+            <MenuList data-testid="user-dropdown-menu" sx={{ padding: 0 }}>
               <MenuItem
-              data-testid="settings-open-dropdown-item"
+                data-testid="settings-open-dropdown-item"
                 onClick={() => {
                   props.handleSettingsClick();
                   popupState.close();
-                }} 
+                }}
                 sx={{
-                  marginTop: "1rem",
-                  borderRadius: "2rem",
+                  height: "3.5rem",
+                  backgroundColor:
+                    theme.palette.mode === "light" ? colors.secondary[500] : alpha(colors.secondary[700], 1),
                   "&:hover": {
                     backgroundColor:
                       theme.palette.mode === "light"
-                        ? alpha(colors.secondary[200], 0.8)
-                        : alpha(colors.secondary[700], 0.8),
+                        ? alpha(colors.secondary[600], 0.3)
+                        : alpha(colors.secondary[600], 0.3),
                     boxShadow: "none",
                   },
                 }}
@@ -163,13 +159,14 @@ const UserDropdown = (props: UserDropdownProps) => {
               <MenuItem
                 onClick={popupState.close}
                 sx={{
-                  marginTop: "1rem",
-                  borderRadius: "2rem",
+                  height: "3.5rem",
+                  backgroundColor:
+                    theme.palette.mode === "light" ? colors.secondary[500] : alpha(colors.secondary[700], 1),
                   "&:hover": {
                     backgroundColor:
                       theme.palette.mode === "light"
-                        ? alpha(colors.secondary[200], 0.8)
-                        : alpha(colors.secondary[700], 0.8),
+                        ? alpha(colors.secondary[600], 0.3)
+                        : alpha(colors.secondary[600], 0.3),
                     boxShadow: "none",
                   },
                 }}

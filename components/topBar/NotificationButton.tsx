@@ -24,16 +24,29 @@ const NotificationButton = (props: NotificationButtonProps) => {
         borderRadius: "1.25rem",
         "&:hover": {
           backgroundColor:
-            theme.palette.mode === "light" ? alpha(colors.secondary[300], 0.8) : alpha(colors.secondary[700], 0.8),
+            theme.palette.mode === "light"
+              ? alpha(colors.secondary[300], 0.8)
+              : alpha(colors.secondary[700], 0.8),
         },
       }}
     >
-      <Badge badgeContent={props.amount} color="error" max={99} overlap="circular" data-testid="notification-badge">
+      <Badge
+        badgeContent={props.amount}
+        color="error"
+        max={99}
+        overlap="circular"
+        data-testid="notification-badge"
+      >
         <NotificationsRounded
           sx={{
-            color: theme.palette.mode === "light" ? alpha(colors.secondary[500], 0.9) : alpha(colors.white[500], 0.9),
+            color:
+              theme.palette.mode === "light"
+                ? alpha(colors.secondary[500], 0.9)
+                : alpha(colors.white[500], 0.9),
             backgroundColor:
-              theme.palette.mode === "light" ? alpha(colors.secondary[100], 0.8) : alpha(colors.secondary[700], 0.2),
+              theme.palette.mode === "light"
+                ? alpha(colors.secondary[100], 0.8)
+                : alpha(colors.secondary[700], 0.2),
             borderRadius: "1.25rem",
             width: "3.5rem",
             height: "3.5rem",
