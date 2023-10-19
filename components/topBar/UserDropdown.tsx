@@ -1,11 +1,7 @@
 import { ExpandMore, LogoutRounded, PersonRounded, SettingsRounded } from "@mui/icons-material";
 import { Box, Button, Menu, MenuItem, MenuList, Typography, alpha, useTheme } from "@mui/material";
-import React from "react";
-import { tokens } from "../../constants/color-palette";
-import { PersonRounded, ExpandMore, SettingsRounded, LogoutRounded, Settings } from "@mui/icons-material";
-import HorizontalDivider from "../common/HorizontalDivider";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
-import SettingsModal from "../settings/SettingsModal";
+import { tokens } from "../../constants/color-palette";
 
 interface UserDropdownProps {
   user: string;
@@ -114,11 +110,11 @@ const UserDropdown = (props: UserDropdownProps) => {
           >
             <MenuList data-testid="user-dropdown-menu" sx={{ padding: 0 }}>
               <MenuItem
-              data-testid="settings-open-dropdown-item"
+                data-testid="settings-open-dropdown-item"
                 onClick={() => {
                   props.handleSettingsClick();
                   popupState.close();
-                }} 
+                }}
                 sx={{
                   height: "3.5rem",
                   backgroundColor:
