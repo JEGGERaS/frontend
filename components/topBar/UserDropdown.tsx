@@ -5,6 +5,7 @@ import { tokens } from "../../constants/color-palette";
 
 interface UserDropdownProps {
   user: string;
+  handleSettingsClick: () => void;
 }
 
 const UserDropdown = (props: UserDropdownProps) => {
@@ -109,7 +110,11 @@ const UserDropdown = (props: UserDropdownProps) => {
           >
             <MenuList data-testid="user-dropdown-menu" sx={{ padding: 0 }}>
               <MenuItem
-                onClick={popupState.close}
+                data-testid="settings-open-dropdown-item"
+                onClick={() => {
+                  props.handleSettingsClick();
+                  popupState.close();
+                }}
                 sx={{
                   height: "3.5rem",
                   backgroundColor:
