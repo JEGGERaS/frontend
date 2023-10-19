@@ -1,8 +1,6 @@
 import NotificationButton from "@/components/topBar/NotificationButton";
-import TopBar from "@/components/topBar/TopBar";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import TopBar from "@/components/topBar/TopBar";
-import NotificationButton from "@/components/topBar/NotificationButton";
 
 describe("TopBar", () => {
   it("Check if TopBar renders correctly", () => {
@@ -120,7 +118,7 @@ describe("TopBar", () => {
         const userSettingsModal = screen.getByTestId("settings-modal");
         expect(userDropdown).not.toBeVisible();
         expect(userSettingsModal).toBeVisible();
-      })
-    })
+      });
+    });
   });
 });
