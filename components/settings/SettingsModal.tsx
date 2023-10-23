@@ -7,6 +7,7 @@ import CustomTextField from "./CustomTextField";
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
+  handleShowPassword: () => void;
   user: string;
 }
 
@@ -75,6 +76,7 @@ const SettingsModal = (props: SettingsModalProps) => {
           }}
         >
           <Button
+            onClick={props.handleShowPassword}
             sx={{
               backgroundColor: colors.secondary[500],
               width: "90%",
