@@ -13,7 +13,6 @@ const CustomTextField = (props: CustomTextFieldProps) => {
 
   return (
     <TextField
-      id="outlined-basic"
       InputProps={{ disableUnderline: true, disabled:true}}
       InputLabelProps={{
         sx: {
