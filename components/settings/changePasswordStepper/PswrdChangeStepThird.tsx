@@ -9,12 +9,12 @@ const PswrdChangeStepThird = () => {
   return (
     <Box
       sx={{
-        margin: "3.5rem 2rem 3rem 2rem",
+        margin: "3rem 2rem -0.3rem 2rem",
         display: "flex",
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "flex-start",
-        width: "30rem",
+        height: "20rem",
       }}
     >
       <Typography variant="h2" sx={{fontWeight:600, marginBottom:"0.5rem"}}>Hasło zostało zmienione.</Typography>

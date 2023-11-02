@@ -1,28 +1,21 @@
-import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
-import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
-import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
+import { HighlightOffRounded, NavigateNextRounded, NavigateBeforeRounded, AssignmentTurnedInRounded } from "@mui/icons-material";
 import {
   Box,
   Button,
   IconButton,
   Modal,
   Step,
-  StepConnector,
-  StepContent,
-  StepIcon,
   StepLabel,
   Stepper,
   Typography,
   alpha,
-  rgbToHex,
   useTheme,
 } from "@mui/material";
 import { tokens } from "../../../constants/color-palette";
 import HorizontalDivider from "../../common/HorizontalDivider";
 import React from "react";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import PswrdChangeStep from "./PswrdChangeStepFirst";
-import { green, lightGreen } from "@mui/material/colors";
+import { green} from "@mui/material/colors";
 import PswrdChangeStepFirst from "./PswrdChangeStepFirst";
 import PswrdChangeStepSecond from "./PswrdChangeStepSecond";
 import PswrdChangeStepThird from "./PswrdChangeStepThird";
@@ -65,7 +58,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: "33rem",
-          height: "40rem",
+          height: "34rem",
           border: `2px solid ${
             theme.palette.mode === "light" ? alpha(colors.black[500], 0.05) : alpha(colors.white[500], 0.05)
           }`,
@@ -89,7 +82,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             onClick={props.onClose}
             sx={{ marginRight: "1rem", color: theme.palette.mode === "light" ? colors.black[500] : colors.white[500] }}
           >
-            <HighlightOffRoundedIcon />
+            <HighlightOffRounded />
           </IconButton>
         </Box>
         <HorizontalDivider
@@ -109,7 +102,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             "& .Mui-disabled .MuiStepIcon-root": {
               color: alpha(colors.secondary[500], 0.2),
             },
-            "& .Mui-disabled .MuiStepConnector-line":{
+            "& .Mui-disabled .MuiStepConnector-line": {
               borderColor: alpha(colors.secondary[500], 0.2),
             },
             "& .MuiStepIcon-text": {
@@ -162,8 +155,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginLeft: "1rem",
-            marginRight: "1rem",
+            margin: "0rem 1rem 0rem 1rem",
           }}
         >
           <Button
@@ -175,7 +167,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               borderRadius: "0.7rem",
               padding: "0.3rem 1rem 0.3rem 0rem",
               "&.Mui-disabled": {
-                backgroundColor: alpha(colors.secondary[500],0.3),
+                backgroundColor: alpha(colors.secondary[500], 0.3),
                 color: colors.white[500],
               },
               "&:hover": {
@@ -186,16 +178,25 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               },
             }}
           >
-            <NavigateBeforeRoundedIcon />
+            <NavigateBeforeRounded />
             <Typography variant="h4">Poprzedni</Typography>
           </Button>
-          <Button onClick={handleNext} disabled={activeStep === 2 ? true : false} sx={{
+          <Button
+            onClick={
+              activeStep === 2
+                ? () => {
+                    props.onClose();
+                    hanldeReset();
+                  }
+                : handleNext
+            }
+            sx={{
               backgroundColor: colors.secondary[500],
               color: colors.white[500],
               borderRadius: "0.7rem",
               padding: "0.3rem 0rem 0.3rem 1rem",
               "&.Mui-disabled": {
-                backgroundColor: alpha(colors.secondary[500],0.3),
+                backgroundColor: alpha(colors.secondary[500], 0.3),
                 color: colors.white[500],
               },
               "&:hover": {
@@ -204,9 +205,21 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
                     ? alpha(colors.secondary[300], 0.8)
                     : alpha(colors.secondary[700], 0.8),
               },
-            }}>
-            <Typography variant="h4">Następny</Typography>
-            <NavigateNextRoundedIcon />
+            }}
+          >
+            {activeStep === 2 ? (
+              <>
+                <Typography variant="h4" sx={{ marginRight: "0.7rem" }}>
+                  Zakończ
+                </Typography>
+                <AssignmentTurnedInRounded sx={{ marginRight: "0.5rem" }} />
+              </>
+            ) : (
+              <>
+                <Typography variant="h4">Następny</Typography>
+                <NavigateNextRounded />
+              </>
+            )}
           </Button>
         </Box>
       </Box>

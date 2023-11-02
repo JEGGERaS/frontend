@@ -10,11 +10,12 @@ const PswrdChangeStepSecond = () => {
   return (
     <Box
       sx={{
-        margin: "3rem 1.5rem 3rem 1.5rem",
+        margin: "3rem 1.5rem -0.3rem 1.5rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
+        height: "20rem",
       }}
     >
       <CustomInputField label={"Wprowadź kod"} fullWidth={true} variant={"outlined"} type={"text"} />

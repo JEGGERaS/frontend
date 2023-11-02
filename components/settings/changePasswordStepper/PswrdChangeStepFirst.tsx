@@ -10,17 +10,17 @@ const PswrdChangeStepFirst = () => {
   return (
     <Box
       sx={{
-        margin: "0rem 0rem 3rem 0rem",
+        margin: "3rem 1.5rem 0rem 1.5rem",
         display: "flex",
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "flex-start",
-        width: "30rem",
+        height: "20rem",
       }}
     >
-      <CustomInputField label={"Stare hasło"} fullWidth={true} variant={"outlined"} type={"password"} margin={"0.5rem 1.5rem"}/>
-      <CustomInputField label={"Nowe hasło"} fullWidth={true} variant={"outlined"} type={"password"} margin={"0.5rem 1.5rem"}/>
-      <CustomInputField label={"Powtórz hasło"} fullWidth={true} variant={"outlined"} type={"password"} margin={"0.5rem 1.5rem"}/>
+      <CustomInputField label={"Stare hasło"} fullWidth={true} variant={"outlined"} type={"password"}/>
+      <CustomInputField label={"Nowe hasło"} fullWidth={true} variant={"outlined"} type={"password"} />
+      <CustomInputField label={"Powtórz hasło"} fullWidth={true} variant={"outlined"} type={"password"}/>
     </Box>
   );
 };
