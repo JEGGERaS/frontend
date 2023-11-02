@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { tokens } from "../../constants/color-palette";
 import { TextField, alpha, useTheme } from "@mui/material";
 
@@ -9,6 +9,7 @@ interface CustomInputFieldProps {
   borderColor?: string;
   type: "password" | "text" | "number" | "email";
   variant: "outlined" | "standard" | "filled";
+  margin?: CSSProperties["margin"];
 }
 
 const CustomInputField = (props: CustomInputFieldProps) => {
@@ -23,7 +24,7 @@ const CustomInputField = (props: CustomInputFieldProps) => {
       type={props.type}
       InputLabelProps={{ sx: { fontWeight: "500" } }}
       sx={{
-        margin: "1.5rem 1.5rem 0rem 1.5rem",
+        margin: props.margin ? props.margin : "1rem 0rem 0rem 0rem",
         backgroundColor: props.backgroundColor ? props.backgroundColor : "transparent",
         fontWeight: "600",
         "& .MuiOutlinedInput-root": {
