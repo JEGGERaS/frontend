@@ -1,13 +1,10 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
-import { tokens } from "constants/color-palette";
+import { Box, Typography} from "@mui/material";
 import React from "react";
 
 const PswrdChangeStepThird = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
   return (
     <Box
+    data-testid="third-step"
       sx={{
         margin: "3rem 2rem -0.3rem 2rem",
         display: "flex",

@@ -7,7 +7,7 @@ import React from "react";
 describe("SettingsModal", () => {
 
     it("Renders as expected", () => {
-        render(<SettingsModal isOpen={true} onClose={function (): void {}} user={"Test"} />);
+        render(<SettingsModal isOpen={true} onClose={() => {}} user={"Test"} handleShowPassword={() => {}} />);
 
         const labelFirstName = screen.getByLabelText("imie");
         const labelLastName = screen.getByLabelText("nazwisko");

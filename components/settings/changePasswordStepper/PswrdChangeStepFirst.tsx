@@ -1,14 +1,12 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
-import { tokens } from "constants/color-palette";
+import { Box } from "@mui/material";
 import React from "react";
 import CustomInputField from "../CustomInputField";
 
 const PswrdChangeStepFirst = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
   return (
     <Box
+      data-testid="first-step"
       sx={{
         margin: "3rem 1.5rem 0rem 1.5rem",
         display: "flex",

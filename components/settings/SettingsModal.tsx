@@ -77,6 +77,7 @@ const SettingsModal = (props: SettingsModalProps) => {
         >
           <Button
             onClick={props.handleShowPassword}
+            data-testid="change-password-button"
             sx={{
               backgroundColor: colors.secondary[500],
               width: "90%",

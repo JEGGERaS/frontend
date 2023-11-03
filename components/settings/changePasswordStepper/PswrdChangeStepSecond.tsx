@@ -1,5 +1,5 @@
 import { Box, Button, Typography, alpha, useTheme } from "@mui/material";
-import { tokens } from "constants/color-palette";
+import { tokens } from "../../../constants/color-palette";
 import React from "react";
 import CustomInputField from "../CustomInputField";
 
@@ -9,6 +9,7 @@ const PswrdChangeStepSecond = () => {
 
   return (
     <Box
+      data-testid="second-step"
       sx={{
         margin: "3rem 1.5rem -0.3rem 1.5rem",
         display: "flex",

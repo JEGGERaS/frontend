@@ -38,18 +38,18 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const hanldeReset = () => {
+  const handleReset = () => {
     setActiveStep(0);
   };
 
   return (
     <Modal
       open={props.isOpen}
+      data-testid="change-password-modal"
       onClose={() => {
         props.onClose();
-        hanldeReset();
+        handleReset();
       }}
-      data-testid="settings-modal"
     >
       <Box
         sx={{
@@ -80,6 +80,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           </Typography>
           <IconButton
             onClick={props.onClose}
+            data-testid="close-changePswrd-modal-button"
             sx={{ marginRight: "1rem", color: theme.palette.mode === "light" ? colors.black[500] : colors.white[500] }}
           >
             <HighlightOffRounded />
@@ -186,7 +187,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               activeStep === 2
                 ? () => {
                     props.onClose();
-                    hanldeReset();
+                    handleReset();
                   }
                 : handleNext
             }
