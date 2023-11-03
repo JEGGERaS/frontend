@@ -41,7 +41,7 @@ const NotificationButton = (props: NotificationButtonProps) => {
           sx={{
             color:
               theme.palette.mode === "light"
-                ? alpha(colors.secondary[500], 0.9)
+                ? alpha(theme.palette.secondary.main, 0.9)
                 : alpha(colors.white[500], 0.9),
             backgroundColor:
               theme.palette.mode === "light"
