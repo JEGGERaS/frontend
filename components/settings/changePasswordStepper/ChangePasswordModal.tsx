@@ -1,24 +1,33 @@
-import { HighlightOffRounded, NavigateNextRounded, NavigateBeforeRounded, AssignmentTurnedInRounded } from "@mui/icons-material";
+import {
+  HighlightOffRounded,
+  NavigateNextRounded,
+  NavigateBeforeRounded,
+  AssignmentTurnedInRounded,
+  CheckRounded,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
   IconButton,
   Modal,
   Step,
+  StepConnector,
+  StepIconProps,
   StepLabel,
   Stepper,
   Typography,
   alpha,
+  stepConnectorClasses,
+  styled,
   useTheme,
 } from "@mui/material";
 import { tokens } from "../../../constants/color-palette";
 import HorizontalDivider from "../../common/HorizontalDivider";
 import React from "react";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import { green} from "@mui/material/colors";
 import PswrdChangeStepFirst from "./PswrdChangeStepFirst";
 import PswrdChangeStepSecond from "./PswrdChangeStepSecond";
 import PswrdChangeStepThird from "./PswrdChangeStepThird";
+import { green } from "@mui/material/colors";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
@@ -29,6 +38,66 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const StyledConnector = styled(StepConnector)(({ theme }) => ({
+    [`&.${stepConnectorClasses.alternativeLabel}`]: {
+      top: 10,
+      left: "calc(-50% + 1rem)",
+      right: "calc(50% + 1rem)",
+    },
+    [`&.${stepConnectorClasses.active}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+      },
+    },
+    [`&.${stepConnectorClasses.completed}`]: {
+      [`& .${stepConnectorClasses.line}`]: {
+        borderColor: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+      },
+    },
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+      borderTopWidth: 3,
+      borderRadius: 1,
+    },
+  }));
+
+  const StyledStepIconRoot = styled("div")<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
+    color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
+    display: "flex",
+    height: 22,
+    alignItems: "center",
+    ...(ownerState.active && {
+      color: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+    }),
+    "& .QontoStepIcon-completedIcon": {
+      color: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+      zIndex: 1,
+      fontSize: "1.5rem",
+    },
+    "& .QontoStepIcon-circle": {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      backgroundColor: "currentColor",
+    },
+  }));
+
+  function StyledStepIcon(props: StepIconProps) {
+    const { active, completed, className } = props;
+
+    return (
+      <StyledStepIconRoot ownerState={{ active }} className={className}>
+        {completed ? (
+          <CheckRounded className="QontoStepIcon-completedIcon" />
+        ) : (
+          <div className="QontoStepIcon-circle" />
+        )}
+      </StyledStepIconRoot>
+    );
+  }
+
+  const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -91,53 +160,22 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           variant={"middle"}
         />
         <Stepper
+          alternativeLabel
           activeStep={activeStep}
+          connector={<StyledConnector />}
           sx={{
-            margin: "1.5rem 0rem",
-            "& .MuiStepLabel-root .Mui-completed": {
-              color: activeStep === 2 ? green[700] : colors.secondary[500],
-            },
-            "& .MuiStepLabel-root .Mui-active": {
-              color: activeStep === 2 ? green[700] : colors.secondary[500],
-            },
-            "& .Mui-disabled .MuiStepIcon-root": {
-              color: alpha(colors.secondary[500], 0.2),
-            },
-            "& .Mui-disabled .MuiStepConnector-line": {
-              borderColor: alpha(colors.secondary[500], 0.2),
-            },
-            "& .MuiStepIcon-text": {
-              fill: colors.white[500],
-              fontWeight: 600,
-              fontSize: "1.2rem",
-            },
-            "& .MuiStepConnector-line": {
-              borderColor: activeStep === 2 ? green[700] : colors.secondary[500],
-              borderWidth: "0.1rem",
+            margin: "2rem 0",
+            "& .MuiStepLabel-label": {
+              fontSize: "1rem",
+              display: "inline",
             },
           }}
         >
-          <Step sx={{ marginRight: "-0.5rem", marginLeft: "1rem" }}>
-            {activeStep > 0 ? (
-              <StepLabel StepIconComponent={CheckCircleRoundedIcon} StepIconProps={{ sx: { fontSize: "2rem" } }} />
-            ) : (
-              <StepLabel />
-            )}
-          </Step>
-          <Step sx={{ marginRight: "-0.5rem" }}>
-            {activeStep > 1 ? (
-              <StepLabel StepIconComponent={CheckCircleRoundedIcon} StepIconProps={{ sx: { fontSize: "2rem" } }} />
-            ) : (
-              <StepLabel />
-            )}
-          </Step>
-          <Step sx={{ marginRight: "0.5rem" }}>
-            {activeStep === 2 ? (
-              <StepLabel StepIconComponent={CheckCircleRoundedIcon} StepIconProps={{ sx: { fontSize: "2rem" } }} />
-            ) : (
-              <StepLabel />
-            )}
-          </Step>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel StepIconComponent={StyledStepIcon}>{label}</StepLabel>
+            </Step>
+          ))}
         </Stepper>
         {(() => {
           switch (activeStep) {

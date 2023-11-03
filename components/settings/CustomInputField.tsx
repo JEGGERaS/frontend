@@ -1,6 +1,7 @@
 import React, { CSSProperties } from "react";
 import { tokens } from "../../constants/color-palette";
 import { TextField, alpha, useTheme } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 interface CustomInputFieldProps {
   label: string;
@@ -22,7 +23,11 @@ const CustomInputField = (props: CustomInputFieldProps) => {
       variant={props.variant}
       fullWidth={props.fullWidth}
       type={props.type}
-      InputLabelProps={{ sx: { fontWeight: "500" } }}
+      InputLabelProps={{ sx: { fontWeight: "500", 
+      "&.Mui-focused": {
+        color: theme.palette.mode === "light" ? colors.black[500] : colors.white[500],
+      },
+    } }}
       sx={{
         margin: props.margin ? props.margin : "1rem 0rem 0rem 0rem",
         backgroundColor: props.backgroundColor ? props.backgroundColor : "transparent",

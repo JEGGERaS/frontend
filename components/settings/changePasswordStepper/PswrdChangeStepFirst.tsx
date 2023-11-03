@@ -8,12 +8,12 @@ const PswrdChangeStepFirst = () => {
     <Box
       data-testid="first-step"
       sx={{
-        margin: "3rem 1.5rem 0rem 1.5rem",
+        margin: "0rem 1.5rem",
         display: "flex",
         flexDirection: "column",
         alignContent: "center",
         justifyContent: "flex-start",
-        height: "20rem",
+        height: "18rem",
       }}
     >
       <CustomInputField label={"Stare hasło"} fullWidth={true} variant={"outlined"} type={"password"}/>
