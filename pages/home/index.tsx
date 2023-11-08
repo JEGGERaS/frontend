@@ -5,6 +5,7 @@ import Card from "../../components/common/Card";
 import Layout from "../../components/common/Layout";
 import { tokens } from "../../constants/color-palette";
 import sketchPhoto from "../../assets/sketchPhoto.png";
+import CustomButton from "@/components/common/CustomButton";
 
 export default function Home() {
   const theme = useTheme();
@@ -31,6 +32,7 @@ export default function Home() {
             </Typography>
           </Box>
           <Box marginTop="1.5rem" width="100%">
+            <CustomButton text="Przejdź" bgcolor={theme.palette.secondary.main} width="40%" />
             <Button
               variant="contained"
               color="secondary"

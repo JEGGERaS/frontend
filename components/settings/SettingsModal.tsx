@@ -3,6 +3,7 @@ import { Box, Button, IconButton, Modal, Typography, alpha, useTheme } from "@mu
 import { tokens } from "../../constants/color-palette";
 import HorizontalDivider from "../common/HorizontalDivider";
 import CustomTextField from "./CustomTextField";
+import CustomButton from "../common/CustomButton";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -74,28 +75,11 @@ const SettingsModal = (props: SettingsModalProps) => {
             alignItems: "center",
           }}
         >
-          <Button
-            sx={{
-              backgroundColor: colors.secondary[500],
-              width: "90%",
-              borderRadius: "0.5rem",
-              marginTop: "2rem",
-              marginBottom: "2rem",
-              paddingTop: "0.75rem",
-              paddingBottom: "0.75rem",
-              color: colors.white[500],
-              "&:hover": {
-                backgroundColor:
-                  theme.palette.mode === "light"
-                    ? alpha(colors.secondary[300], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
-              },
-            }}
-          >
-            <Typography variant="h3" sx={{ fontWeight: "600" }}>
-              zmiana hasła
-            </Typography>
-          </Button>
+          <CustomButton
+            text="zmiana hasła"
+            width="90%"
+            bgcolor={colors.secondary[500]}
+          />
         </Box>
       </Box>
     </Modal>
