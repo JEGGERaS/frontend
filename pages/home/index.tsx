@@ -5,7 +5,6 @@ import sketchPhoto from "../../assets/sketchPhoto.png";
 import Card from "../../components/common/Card";
 import Layout from "../../components/common/Layout";
 import { tokens } from "../../constants/color-palette";
-import sketchPhoto from "../../assets/sketchPhoto.png";
 import CustomButton from "@/components/common/CustomButton";
 
 export default function Home() {
