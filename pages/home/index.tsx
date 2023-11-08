@@ -1,11 +1,10 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, alpha, useTheme } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import sketchPhoto from "../../assets/sketchPhoto.png";
 import Card from "../../components/common/Card";
 import Layout from "../../components/common/Layout";
 import { tokens } from "../../constants/color-palette";
-import CustomButton from "@/components/common/CustomButton";
 
 export default function Home() {
   const theme = useTheme();
@@ -48,14 +47,15 @@ export default function Home() {
             </Typography>
           </Box>
           <Box marginTop="1.5rem" width="100%">
-            <CustomButton text="Przejdź" bgcolor={theme.palette.secondary.main} width="40%" />
             <Button
               variant="contained"
               color="secondary"
               sx={{
                 borderRadius: "0.6rem",
+                padding: "0.5rem 1rem",
                 "&:hover": {
-                  bgcolor: theme.palette.secondary.dark,
+                  backgroundColor:
+                    theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
                 },
               }}
             >
