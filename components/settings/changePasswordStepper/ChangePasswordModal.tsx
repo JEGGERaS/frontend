@@ -37,7 +37,7 @@ interface ChangePasswordModalProps {
 const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState<number>(0);
 
   const StyledConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -83,7 +83,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     },
   }));
 
-  function StyledStepIcon(props: StepIconProps) {
+  const StyledStepIcon = (props: StepIconProps) => {
     const { active, completed, className } = props;
 
     return (
@@ -95,7 +95,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
         )}
       </StyledStepIconRoot>
     );
-  }
+  };
 
   const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
 
@@ -109,6 +109,28 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  const renderStep = (activeStep: number) => {
+    switch (activeStep) {
+      case 0:
+        return <PswrdChangeStepFirst />;
+      case 1:
+        return <PswrdChangeStepSecond />;
+      case 2:
+        return <PswrdChangeStepThird />;
+      default:
+        return <Typography>Coś poszło nie tak</Typography>;
+    }
+  };
+
+  const handleFinishPswrdChange = () => {
+    activeStep === 2
+      ? () => {
+          props.onClose();
+          handleReset();
+        }
+      : handleNext;
   };
 
   return (
@@ -177,18 +199,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             </Step>
           ))}
         </Stepper>
-        {(() => {
-          switch (activeStep) {
-            case 0:
-              return <PswrdChangeStepFirst />;
-            case 1:
-              return <PswrdChangeStepSecond />;
-            case 2:
-              return <PswrdChangeStepThird />;
-            default:
-              return <Typography>Coś poszło nie tak</Typography>;
-          }
-        })()}
+        {renderStep(activeStep)}
         <Box
           sx={{
             display: "flex",
@@ -219,14 +230,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             <Typography variant="h4">Poprzedni</Typography>
           </Button>
           <Button
-            onClick={
-              activeStep === 2
-                ? () => {
-                    props.onClose();
-                    handleReset();
-                  }
-                : handleNext
-            }
+            onClick={handleFinishPswrdChange}
             sx={{
               backgroundColor: colors.secondary[500],
               color: colors.white[500],
