@@ -39,7 +39,7 @@ const SettingsModal = (props: SettingsModalProps) => {
             margin: "1rem 1rem 0.5rem 1rem",
           }}
         >
-          <Typography variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
+          <Typography color={theme.palette.text.secondary} variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
             Ustawienia
           </Typography>
           <IconButton
@@ -78,7 +78,7 @@ const SettingsModal = (props: SettingsModalProps) => {
             variant="contained"
             sx={{
               backgroundColor: theme.palette.secondary.main,
-              color: theme.palette.mode === 'light' ? theme.palette.text.primary : theme.palette.text.secondary,
+              color: theme.palette.mode === "light" ? theme.palette.text.primary : theme.palette.text.secondary,
               width: "90%",
               borderRadius: "0.5rem",
               marginTop: "2rem",
