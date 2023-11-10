@@ -211,9 +211,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               },
               "&:hover": {
                 backgroundColor:
-                  theme.palette.mode === "light"
-                    ? alpha(colors.secondary[300], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
+                  theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
               },
             }}
           >
@@ -240,9 +238,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               },
               "&:hover": {
                 backgroundColor:
-                  theme.palette.mode === "light"
-                    ? alpha(colors.secondary[300], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
+                  theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
               },
             }}
           >
