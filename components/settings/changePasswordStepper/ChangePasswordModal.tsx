@@ -34,6 +34,10 @@ interface ChangePasswordModalProps {
   onClose: () => void;
 }
 
+interface handleFinishPswrdChangeProps{
+  activeStep: number;
+}
+
 const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -124,13 +128,13 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     }
   };
 
-  const handleFinishPswrdChange = () => {
-    activeStep === 2
-      ? () => {
-          props.onClose();
-          handleReset();
-        }
-      : handleNext;
+  const handleNextButtonClick = () => {
+    if (activeStep === 2) {
+      props.onClose();
+      handleReset();
+    } else {
+      handleNext();
+    }
   };
 
   return (
@@ -230,7 +234,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             <Typography variant="h4">Poprzedni</Typography>
           </Button>
           <Button
-            onClick={handleFinishPswrdChange}
+            onClick={handleNextButtonClick}
             sx={{
               backgroundColor: colors.secondary[500],
               color: colors.white[500],
