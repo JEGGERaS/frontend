@@ -22,7 +22,7 @@ import {
   styled,
   useTheme,
 } from "@mui/material";
-import { dummyPostRequest } from "constants/dummyRequests";
+import { dummyPostRequest } from "../../../constants/dummyRequests";
 import React from "react";
 import { tokens } from "../../../constants/color-palette";
 import HorizontalDivider from "../../common/HorizontalDivider";

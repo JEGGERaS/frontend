@@ -1,4 +1,3 @@
-import SettingsModal from "@/components/settings/SettingsModal";
 import ChangePasswordModal from "@/components/settings/changePasswordStepper/ChangePasswordModal";
 import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
