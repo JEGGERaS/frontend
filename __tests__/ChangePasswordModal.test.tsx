@@ -1,7 +1,6 @@
 import ChangePasswordModal from "@/components/settings/changePasswordStepper/ChangePasswordModal";
 import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import React from "react";
 
 describe("ChanclgePasswordModal", () => {
   beforeEach(() => {
@@ -91,12 +90,24 @@ describe("ChanclgePasswordModal", () => {
   it("Resetting steps works as expected", () => {
     const closeModalButton = screen.getByTestId("close-changePswrd-modal-button");
     const changePasswordModal = screen.getByTestId("change-password-modal");
+    const nextButton = screen.getByRole("button", { name: "Następny" });
+    const firstStepDiv = screen.getByTestId("first-step");
+
+    expect(firstStepDiv).toBeVisible();
+
+    fireEvent.click(nextButton);
+    waitFor(() => {
+      const secondStepDiv = screen.getByTestId("second-step");
+      expect(firstStepDiv).not.toBeVisible();
+      expect(secondStepDiv).toBeVisible();
+    });
     fireEvent.click(closeModalButton);
     waitFor(() => {
-      const firstStepDiv = screen.getByTestId("first-step");
-      expect(firstStepDiv).not.toBeVisible();
       expect(changePasswordModal).not.toBeVisible();
     });
+    render(<ChangePasswordModal isOpen={true} onClose={() => {}} />);
+    const firstStepDivAfterReset = screen.getByTestId("first-step");
+    expect(firstStepDivAfterReset).toBeVisible();
   });
   it("Closing modal when submitting password change works as expected", () => {
     const nextButton = screen.getByRole("button", { name: "Następny" });

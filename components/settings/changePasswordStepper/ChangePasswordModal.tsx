@@ -167,7 +167,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       case 1:
         setIsProcessing(true);
         const status = await handleCodeSubmit();
-        console.log(status);
         if(status !== "wrong-code"){
           handleNext();
         }
