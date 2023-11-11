@@ -138,7 +138,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     setRequestStatus(null);
   };
 
-
   const handleRequestStatusChange = () => {
     setRequestStatus(null);
   };
@@ -206,7 +205,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           backgroundColor: theme.palette.mode === "light" ? colors.white[500] : colors.black[500],
         }}
       >
-        {/* Zmiana hasla + button do zamkniecia */}
         <Box
           sx={{
             display: "flex",
@@ -250,7 +248,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           ))}
         </Stepper>
         {renderStep(activeStep)}
-        {/* Next and previous buttons */}
         <Box
           sx={{
             display: "flex",
