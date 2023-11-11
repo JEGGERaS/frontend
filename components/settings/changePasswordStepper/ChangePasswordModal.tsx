@@ -28,20 +28,19 @@ import PswrdChangeStepFirst from "./PswrdChangeStepFirst";
 import PswrdChangeStepSecond from "./PswrdChangeStepSecond";
 import PswrdChangeStepThird from "./PswrdChangeStepThird";
 import { green } from "@mui/material/colors";
+import { dummyPostRequest } from "constants/dummyRequests";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-interface handleFinishPswrdChangeProps{
-  activeStep: number;
-}
-
 const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [activeStep, setActiveStep] = React.useState<number>(0);
+  const [requestStatus, setRequestStatus] = React.useState<string | null>(null);
+  const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
 
   const StyledConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -101,8 +100,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     );
   };
 
-  const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -113,6 +110,11 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 
   const handleReset = () => {
     setActiveStep(0);
+    setRequestStatus(null);
+  };
+
+  const handleRequestStatusChange = () => {
+    setRequestStatus(null);
   };
 
   const renderStep = (activeStep: number) => {
@@ -120,7 +122,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       case 0:
         return <PswrdChangeStepFirst />;
       case 1:
-        return <PswrdChangeStepSecond />;
+        return <PswrdChangeStepSecond requestStatus={requestStatus} onInputChange={handleRequestStatusChange} />;
       case 2:
         return <PswrdChangeStepThird />;
       default:
@@ -128,12 +130,28 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     }
   };
 
-  const handleNextButtonClick = () => {
-    if (activeStep === 2) {
-      props.onClose();
-      handleReset();
-    } else {
-      handleNext();
+  const handleCodeSubmit = async () => {
+    const response = await dummyPostRequest();
+    setRequestStatus(response.status);
+    return response.status;
+  };
+
+  const handleNextButtonClick = async () => {
+    switch (activeStep) {
+      case 1:
+        const status = await handleCodeSubmit();
+        console.log(status);
+        if (status === "success") {
+          handleNext();
+        }
+        break;
+      case 2:
+        props.onClose();
+        handleReset();
+        break;
+      default:
+        handleNext();
+        break;
     }
   };
 
@@ -235,6 +253,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           </Button>
           <Button
             onClick={handleNextButtonClick}
+            disabled={requestStatus === "wrong-code" ? true : false}
             sx={{
               backgroundColor: colors.secondary[500],
               color: colors.white[500],

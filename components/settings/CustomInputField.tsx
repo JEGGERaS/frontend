@@ -1,7 +1,6 @@
 import React, { CSSProperties } from "react";
 import { tokens } from "../../constants/color-palette";
 import { TextField, alpha, useTheme } from "@mui/material";
-import { blue } from "@mui/material/colors";
 
 interface CustomInputFieldProps {
   label: string;
@@ -11,6 +10,7 @@ interface CustomInputFieldProps {
   type: "password" | "text" | "number" | "email";
   variant: "outlined" | "standard" | "filled";
   margin?: CSSProperties["margin"];
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomInputField = (props: CustomInputFieldProps) => {
@@ -21,13 +21,17 @@ const CustomInputField = (props: CustomInputFieldProps) => {
     <TextField
       label={props.label}
       variant={props.variant}
+      onChange={props.onChange}
       fullWidth={props.fullWidth}
       type={props.type}
-      InputLabelProps={{ sx: { fontWeight: "500", 
-      "&.Mui-focused": {
-        color: theme.palette.mode === "light" ? colors.black[500] : colors.white[500],
-      },
-    } }}
+      InputLabelProps={{
+        sx: {
+          fontWeight: "500",
+          "&.Mui-focused": {
+            color: theme.palette.mode === "light" ? colors.black[500] : colors.white[500],
+          },
+        },
+      }}
       sx={{
         margin: props.margin ? props.margin : "1rem 0rem 0rem 0rem",
         backgroundColor: props.backgroundColor ? props.backgroundColor : "transparent",
@@ -38,10 +42,10 @@ const CustomInputField = (props: CustomInputFieldProps) => {
             borderWidth: "0.15rem",
             borderRadius: "0.75rem",
           },
-          "&:hover fieldset": { 
+          "&:hover fieldset": {
             borderColor: props.borderColor ? props.borderColor : colors.primary[500],
-            transition:"0.35s ease-in-out"
-        },
+            transition: "0.35s ease-in-out",
+          },
         },
       }}
     ></TextField>
