@@ -33,6 +33,11 @@ const PswrdChangeStepSecond = (props: PswrdChangeStepSecondProps) => {
         variant={"outlined"}
         type={"text"}
       />
+      {props.requestStatus === "wrong-code" ? (
+        <Typography variant="h5" color={theme.palette.error.main} sx={{ marginTop: "0.5rem" }}>
+          Wprowadzony kod jest nieprawidłowy
+        </Typography>
+      ) : null}
       <Typography variant="h5" sx={{ fontWeight: 500, marginTop: "1rem" }}>
         Jednorazowy kod został wygenerowany i wysłany na twoją skrzynkę pocztową. Jeżeli nie otrzymałeś kodu wyślij go
         ponownie.
@@ -52,11 +57,6 @@ const PswrdChangeStepSecond = (props: PswrdChangeStepSecondProps) => {
       >
         <Typography variant="h5">Wyślij ponownie</Typography>
       </Button>
-      {props.requestStatus === "wrong-code" ? (
-        <Typography variant="h5" sx={{ fill: red }}>
-          Wprowadzony kod jest nieprawidłowy
-        </Typography>
-      ) : null}
     </Box>
   );
 };

@@ -5,7 +5,9 @@ import {
   AssignmentTurnedInRounded,
   CheckRounded,
 } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 import {
+  Alert,
   Box,
   Button,
   IconButton,
@@ -27,8 +29,9 @@ import React from "react";
 import PswrdChangeStepFirst from "./PswrdChangeStepFirst";
 import PswrdChangeStepSecond from "./PswrdChangeStepSecond";
 import PswrdChangeStepThird from "./PswrdChangeStepThird";
-import { green } from "@mui/material/colors";
+import { green, red } from "@mui/material/colors";
 import { dummyPostRequest } from "constants/dummyRequests";
+import CustomAlert from "@/components/common/CustomAlert";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
@@ -41,6 +44,8 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [requestStatus, setRequestStatus] = React.useState<string | null>(null);
   const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
+  const [isAlertVisible, setIsAlertVisible] = React.useState<boolean>(false);
+  const [isProcessing, setIsProcessing] = React.useState<boolean>(false);
 
   const StyledConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -113,6 +118,10 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     setRequestStatus(null);
   };
 
+  const handleAlertClose = () => {
+    setIsAlertVisible(false);
+  }
+
   const handleRequestStatusChange = () => {
     setRequestStatus(null);
   };
@@ -137,12 +146,17 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   };
 
   const handleNextButtonClick = async () => {
+    if (isProcessing) return;
     switch (activeStep) {
       case 1:
+        setIsProcessing(true);
         const status = await handleCodeSubmit();
         console.log(status);
         if (status === "success") {
           handleNext();
+        }
+        if (status === "failed") {
+          setIsAlertVisible(true);
         }
         break;
       case 2:
@@ -153,6 +167,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
         handleNext();
         break;
     }
+    setIsProcessing(false);
   };
 
   return (
@@ -162,6 +177,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       onClose={() => {
         props.onClose();
         handleReset();
+        handleAlertClose();
       }}
     >
       <Box
@@ -253,7 +269,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           </Button>
           <Button
             onClick={handleNextButtonClick}
-            disabled={requestStatus === "wrong-code" ? true : false}
+            disabled={isProcessing ? true : false}
             sx={{
               backgroundColor: colors.secondary[500],
               color: colors.white[500],
@@ -284,6 +300,9 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             )}
           </Button>
         </Box>
+        {isAlertVisible ? (
+          <CustomAlert onClose={handleAlertClose} alertType={"error"} errorMessage="Wystąpił błąd po stronie serwera. Spróbuj ponownie później"></CustomAlert>
+        ) : null}
       </Box>
     </Modal>
   );
