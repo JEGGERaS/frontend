@@ -12,7 +12,6 @@ interface PswrdChangeStepSecondProps {
 const PswrdChangeStepSecond = (props: PswrdChangeStepSecondProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  console.log(props.requestStatus);
 
   return (
     <Box
@@ -33,12 +32,12 @@ const PswrdChangeStepSecond = (props: PswrdChangeStepSecondProps) => {
         variant={"outlined"}
         type={"text"}
       />
-      {props.requestStatus === "wrong-code" ? (
+       {props.requestStatus === "wrong-code" ? (
         <Typography variant="h5" color={theme.palette.error.main} sx={{ marginTop: "0.5rem" }}>
           Wprowadzony kod jest nieprawidłowy
         </Typography>
       ) : null}
-      <Typography variant="h5" sx={{ fontWeight: 500, marginTop: "1rem" }}>
+      <Typography variant="h5" sx={{ fontWeight: 500, marginTop: props.requestStatus === "wrong-code" ? "0.5rem" : "1rem" }}>
         Jednorazowy kod został wygenerowany i wysłany na twoją skrzynkę pocztową. Jeżeli nie otrzymałeś kodu wyślij go
         ponownie.
       </Typography>

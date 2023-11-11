@@ -12,6 +12,7 @@ interface CustomAlertProps {
   alertType: "error" | "info" | "success" | "warning";
   errorMessage: string;
   onClose: () => void;
+  marginTop?: string;
 }
 
 const alertIcons = {
@@ -45,7 +46,7 @@ const CustomAlert = (props: CustomAlertProps) => {
               <HighlightOffRounded fontSize="inherit"/>
             </IconButton>
           }
-          sx={{mt:"3rem", borderRadius:"0.5rem", fontWeight: 600}}
+          sx={{mt:props.marginTop? props.marginTop : "0rem", borderRadius:"0.5rem", fontWeight: 600}}
         >
           {props.errorMessage}
         </Alert>

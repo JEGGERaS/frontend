@@ -1,13 +1,12 @@
 import {
-  HighlightOffRounded,
-  NavigateNextRounded,
-  NavigateBeforeRounded,
   AssignmentTurnedInRounded,
   CheckRounded,
+  HighlightOffRounded,
+  NavigateBeforeRounded,
+  NavigateNextRounded,
+  CloseRounded,
 } from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
 import {
-  Alert,
   Box,
   Button,
   IconButton,
@@ -23,15 +22,13 @@ import {
   styled,
   useTheme,
 } from "@mui/material";
+import { dummyPostRequest } from "constants/dummyRequests";
+import React from "react";
 import { tokens } from "../../../constants/color-palette";
 import HorizontalDivider from "../../common/HorizontalDivider";
-import React from "react";
 import PswrdChangeStepFirst from "./PswrdChangeStepFirst";
 import PswrdChangeStepSecond from "./PswrdChangeStepSecond";
 import PswrdChangeStepThird from "./PswrdChangeStepThird";
-import { green, red } from "@mui/material/colors";
-import { dummyPostRequest } from "constants/dummyRequests";
-import CustomAlert from "@/components/common/CustomAlert";
 
 interface ChangePasswordModalProps {
   isOpen: boolean;
@@ -44,7 +41,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   const [requestStatus, setRequestStatus] = React.useState<string | null>(null);
   const steps = ["Wprowadź hasło", "Wprowadź kod", "Hasło zmienione"];
-  const [isAlertVisible, setIsAlertVisible] = React.useState<boolean>(false);
   const [isProcessing, setIsProcessing] = React.useState<boolean>(false);
 
   const StyledConnector = styled(StepConnector)(({ theme }) => ({
@@ -55,12 +51,22 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     },
     [`&.${stepConnectorClasses.active}`]: {
       [`& .${stepConnectorClasses.line}`]: {
-        borderColor: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+        borderColor:
+          activeStep === 2
+            ? requestStatus === "failed"
+              ? theme.palette.error.main
+              : theme.palette.success.main
+            : theme.palette.secondary.main,
       },
     },
     [`&.${stepConnectorClasses.completed}`]: {
       [`& .${stepConnectorClasses.line}`]: {
-        borderColor: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+        borderColor:
+          activeStep === 2
+            ? requestStatus === "failed"
+              ? theme.palette.error.main
+              : theme.palette.success.main
+            : theme.palette.secondary.main,
       },
     },
     [`& .${stepConnectorClasses.line}`]: {
@@ -76,10 +82,20 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     height: 22,
     alignItems: "center",
     ...(ownerState.active && {
-      color: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+      color:
+        activeStep === 2
+          ? requestStatus === "failed"
+            ? theme.palette.error.main
+            : theme.palette.success.main
+          : theme.palette.secondary.main,
     }),
     "& .QontoStepIcon-completedIcon": {
-      color: activeStep === 2 ? green[500] : theme.palette.secondary.main,
+      color:
+        activeStep === 2
+          ? requestStatus === "failed"
+            ? theme.palette.error.main
+            : theme.palette.success.main
+          : theme.palette.secondary.main,
       zIndex: 1,
       fontSize: "1.5rem",
     },
@@ -96,8 +112,12 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
 
     return (
       <StyledStepIconRoot ownerState={{ active }} className={className}>
-        {completed ? (
-          <CheckRounded className="QontoStepIcon-completedIcon" />
+        {completed || activeStep === 2 ? (
+         requestStatus === "failed" ? (
+            <CloseRounded className="QontoStepIcon-completedIcon" />
+          ) : (
+            <CheckRounded className="QontoStepIcon-completedIcon" />
+         )
         ) : (
           <div className="QontoStepIcon-circle" />
         )}
@@ -118,9 +138,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     setRequestStatus(null);
   };
 
-  const handleAlertClose = () => {
-    setIsAlertVisible(false);
-  }
 
   const handleRequestStatusChange = () => {
     setRequestStatus(null);
@@ -133,7 +150,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       case 1:
         return <PswrdChangeStepSecond requestStatus={requestStatus} onInputChange={handleRequestStatusChange} />;
       case 2:
-        return <PswrdChangeStepThird />;
+        return <PswrdChangeStepThird requestStatus={requestStatus}/>;
       default:
         return <Typography>Coś poszło nie tak</Typography>;
     }
@@ -150,14 +167,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     switch (activeStep) {
       case 1:
         setIsProcessing(true);
-        const status = await handleCodeSubmit();
-        console.log(status);
-        if (status === "success") {
-          handleNext();
-        }
-        if (status === "failed") {
-          setIsAlertVisible(true);
-        }
+        handleNext();
         break;
       case 2:
         props.onClose();
@@ -170,16 +180,13 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     setIsProcessing(false);
   };
 
+  const handleModalClose = () => {
+    props.onClose();
+    handleReset();
+  };
+
   return (
-    <Modal
-      open={props.isOpen}
-      data-testid="change-password-modal"
-      onClose={() => {
-        props.onClose();
-        handleReset();
-        handleAlertClose();
-      }}
-    >
+    <Modal open={props.isOpen} data-testid="change-password-modal" onClose={handleModalClose}>
       <Box
         sx={{
           position: "absolute",
@@ -195,6 +202,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           backgroundColor: theme.palette.mode === "light" ? colors.white[500] : colors.black[500],
         }}
       >
+        {/* Zmiana hasla + button do zamkniecia */}
         <Box
           sx={{
             display: "flex",
@@ -238,6 +246,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
           ))}
         </Stepper>
         {renderStep(activeStep)}
+        {/* Next and previous buttons */}
         <Box
           sx={{
             display: "flex",
@@ -300,9 +309,6 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             )}
           </Button>
         </Box>
-        {isAlertVisible ? (
-          <CustomAlert onClose={handleAlertClose} alertType={"error"} errorMessage="Wystąpił błąd po stronie serwera. Spróbuj ponownie później"></CustomAlert>
-        ) : null}
       </Box>
     </Modal>
   );
