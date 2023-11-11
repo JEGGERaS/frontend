@@ -167,7 +167,11 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     switch (activeStep) {
       case 1:
         setIsProcessing(true);
-        handleNext();
+        const status = await handleCodeSubmit();
+        console.log(status);
+        if(status !== "wrong-code"){
+          handleNext();
+        }
         break;
       case 2:
         props.onClose();
