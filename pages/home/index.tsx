@@ -1,4 +1,4 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, alpha, useTheme } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import sketchPhoto from "../../assets/sketchPhoto.png";
@@ -52,8 +52,10 @@ export default function Home() {
               color="secondary"
               sx={{
                 borderRadius: "0.6rem",
+                padding: "0.5rem 1rem",
                 "&:hover": {
-                  bgcolor: theme.palette.secondary.dark,
+                  backgroundColor:
+                    theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
                 },
               }}
             >
