@@ -37,7 +37,7 @@ export default function Home() {
               sx={{
                 borderRadius: "0.6rem",
                 "&:hover": {
-                  bgcolor: colors.secondary[600],
+                  bgcolor: theme.palette.mode === 'light' ? colors.secondary[600] : colors.secondary[700],
                 },
               }}
             >

@@ -78,8 +78,9 @@ const SettingsModal = (props: SettingsModalProps) => {
           <Button
             onClick={props.handleShowPassword}
             data-testid="change-password-button"
+            variant="contained"
+            color="secondary"
             sx={{
-              backgroundColor: colors.secondary[500],
               width: "90%",
               borderRadius: "0.5rem",
               marginTop: "2rem",
@@ -88,10 +89,7 @@ const SettingsModal = (props: SettingsModalProps) => {
               paddingBottom: "0.75rem",
               color: colors.white[500],
               "&:hover": {
-                backgroundColor:
-                  theme.palette.mode === "light"
-                    ? alpha(colors.secondary[300], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
+                bgcolor: theme.palette.mode === 'light' ? colors.secondary[600] : colors.secondary[700],
               },
             }}
           >
