@@ -38,4 +38,27 @@ describe("Layout", () => {
 
     expect(passwordButtonElement).toBeVisible();
   })
+
+  it("Opens change password modal as expected", () => {
+    render(<LayoutTest />);
+    const buttonElement = screen.getByTestId("user-dropdown-button");
+
+    act(() => {
+        fireEvent.click(buttonElement);
+    });
+
+    const settingsButton = screen.getByTestId("settings-open-dropdown-item");
+
+    act(() => {
+        fireEvent.click(settingsButton);
+    });
+
+    const passwordButtonElement = screen.getByTestId("change-password-button");
+
+    act(() => {
+      fireEvent.click(passwordButtonElement);
+  });
+
+    expect(passwordButtonElement).not.toBeVisible();
+  });
 });

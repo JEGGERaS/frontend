@@ -113,11 +113,11 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
     return (
       <StyledStepIconRoot ownerState={{ active }} className={className}>
         {completed || activeStep === 2 ? (
-         requestStatus === "failed" ? (
+          requestStatus === "failed" ? (
             <CloseRounded className="QontoStepIcon-completedIcon" />
           ) : (
             <CheckRounded className="QontoStepIcon-completedIcon" />
-         )
+          )
         ) : (
           <div className="QontoStepIcon-circle" />
         )}
@@ -149,7 +149,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       case 1:
         return <PswrdChangeStepSecond requestStatus={requestStatus} onInputChange={handleRequestStatusChange} />;
       case 2:
-        return <PswrdChangeStepThird requestStatus={requestStatus}/>;
+        return <PswrdChangeStepThird requestStatus={requestStatus} />;
       default:
         return <Typography>Coś poszło nie tak</Typography>;
     }
@@ -167,7 +167,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
       case 1:
         setIsProcessing(true);
         const status = await handleCodeSubmit();
-        if(status !== "wrong-code"){
+        if (status !== "wrong-code") {
           handleNext();
         }
         break;

@@ -6,6 +6,7 @@ describe("ChanclgePasswordModal", () => {
   beforeEach(() => {
     render(<ChangePasswordModal isOpen={true} onClose={() => {}} />);
   });
+
   it("First step renders as expected", () => {
     const labelOldPassword = screen.getByLabelText("Stare hasło");
     const labelNewPassword = screen.getByLabelText("Nowe hasło");
@@ -23,6 +24,7 @@ describe("ChanclgePasswordModal", () => {
     expect(nextButton).toBeEnabled();
     expect(firstStepDiv).toBeVisible();
   });
+
   it("Second step renders as expected", () => {
     const nextButton = screen.getByRole("button", { name: "Następny" });
     fireEvent.click(nextButton);
@@ -64,6 +66,7 @@ describe("ChanclgePasswordModal", () => {
       });
     });
   });
+
   it("Going to previous step works as expected", () => {
     const nextButton = screen.getByRole("button", { name: "Następny" });
     const prevButton = screen.getByRole("button", { name: "Poprzedni" });
@@ -87,6 +90,7 @@ describe("ChanclgePasswordModal", () => {
       });
     });
   });
+
   it("Resetting steps works as expected", () => {
     const closeModalButton = screen.getByTestId("close-changePswrd-modal-button");
     const changePasswordModal = screen.getByTestId("change-password-modal");
@@ -109,6 +113,7 @@ describe("ChanclgePasswordModal", () => {
     const firstStepDivAfterReset = screen.getByTestId("first-step");
     expect(firstStepDivAfterReset).toBeVisible();
   });
+
   it("Closing modal when submitting password change works as expected", () => {
     const nextButton = screen.getByRole("button", { name: "Następny" });
 
@@ -125,4 +130,6 @@ describe("ChanclgePasswordModal", () => {
       });
     });
   });
+
+  
 });
