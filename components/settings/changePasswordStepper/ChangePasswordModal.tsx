@@ -239,14 +239,10 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
               display: "inline",
               color: theme.palette.text.secondary
             },
-            "& .MuiStepLabel-label.MuiStepLabel-active": {
-              fontWeight: 600,
-              color: theme.palette.text.secondary
+            "& .MuiStepLabel-label.MuiStepLabel-alternativeLabel": {
+              fontWeight: 500,
+              color: theme.palette.text.secondary 
             },
-            "& .MuiStepLabel-label.MuiStepLabel-completed":{
-              fontWeight: 600,
-              color: theme.palette.text.secondary
-            }
           }}
         >
           {steps.map((label) => (
