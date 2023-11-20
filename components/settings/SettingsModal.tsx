@@ -40,7 +40,7 @@ const SettingsModal = (props: SettingsModalProps) => {
             margin: "1rem 1rem 0.5rem 1rem",
           }}
         >
-          <Typography variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
+          <Typography color={theme.palette.text.secondary} variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
             Ustawienia
           </Typography>
           <IconButton
@@ -79,19 +79,17 @@ const SettingsModal = (props: SettingsModalProps) => {
             onClick={props.handleShowPassword}
             data-testid="change-password-button"
             sx={{
-              backgroundColor: colors.secondary[500],
+              backgroundColor: theme.palette.secondary.main,
+              color: theme.palette.mode === "light" ? theme.palette.text.primary : theme.palette.text.secondary,
               width: "90%",
               borderRadius: "0.5rem",
               marginTop: "2rem",
               marginBottom: "2rem",
               paddingTop: "0.75rem",
               paddingBottom: "0.75rem",
-              color: colors.white[500],
               "&:hover": {
                 backgroundColor:
-                  theme.palette.mode === "light"
-                    ? alpha(colors.secondary[300], 0.8)
-                    : alpha(colors.secondary[700], 0.8),
+                  theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
               },
             }}
           >

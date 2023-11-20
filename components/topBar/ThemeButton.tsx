@@ -30,7 +30,7 @@ const ThemeButton = () => {
         <WbSunnyRounded
           data-testid="theme-button-light"
           sx={{
-            color: alpha(colors.primary[500], 0.8),
+            color: alpha(theme.palette.primary.main, 0.8),
             backgroundColor: alpha(colors.primary[100], 0.9),
             borderRadius: "1.25rem",
             width: "3.5rem",

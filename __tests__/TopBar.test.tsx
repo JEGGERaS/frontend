@@ -21,9 +21,7 @@ describe("TopBar", () => {
     render(<TopBar page="Sample" handleSettingsClick={() => {}} />);
     const themeButton = screen.getByTestId("theme-button");
     const themeButtonLight = screen.getByTestId("theme-button-light");
-    const topBar = screen.getByTestId("top-bar");
 
-    expect(topBar).toHaveStyle("background-color: #fafafa");
     expect(themeButtonLight).toBeInTheDocument();
 
     fireEvent.click(themeButton);

@@ -1,10 +1,10 @@
-import { alpha, Box, Button, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, alpha, useTheme } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
+import sketchPhoto from "../../assets/sketchPhoto.png";
 import Card from "../../components/common/Card";
 import Layout from "../../components/common/Layout";
 import { tokens } from "../../constants/color-palette";
-import sketchPhoto from "../../assets/sketchPhoto.png";
 
 export default function Home() {
   const theme = useTheme();
@@ -15,19 +15,35 @@ export default function Home() {
   return (
     <Layout page={"Home"}>
       <Grid xs={4}>
-        <Card bgcolor={alpha(theme.palette.secondary.main, 0.2)}>
+        <Card bgcolor={theme.palette.secondary.light}>
           <Box width="100%" display="flex" flexDirection="column">
-            <Typography variant="h4" fontWeight="700" letterSpacing="1px">
+            <Typography
+              color={theme.palette.text.secondary}
+              variant="h4"
+              fontWeight="700"
+              letterSpacing="1px"
+            >
               Witaj z powrotem,
             </Typography>
-            <Typography variant="h4" fontWeight="700" letterSpacing="1px">
+            <Typography
+              color={theme.palette.text.secondary}
+              variant="h4"
+              fontWeight="700"
+              letterSpacing="1px"
+            >
               {fetchFromCookies}!
             </Typography>
           </Box>
           <Box marginTop="1.5rem" width="100%">
-            <Typography width="85%" variant="h4" fontWeight="500" align="justify">
-              Jeśli potrzebujesz wsparcia w obsłudze systemu, skorzystaj z naszego szybkiego poradnika. Życzymy owocnej
-              pracy!
+            <Typography
+              color={theme.palette.text.secondary}
+              width="85%"
+              variant="h4"
+              fontWeight="500"
+              align="justify"
+            >
+              Jeśli potrzebujesz wsparcia w obsłudze systemu, skorzystaj z
+              naszego szybkiego poradnika. Życzymy owocnej pracy!
             </Typography>
           </Box>
           <Box marginTop="1.5rem" width="100%">
@@ -36,12 +52,19 @@ export default function Home() {
               color="secondary"
               sx={{
                 borderRadius: "0.6rem",
+                padding: "0.5rem 1rem",
                 "&:hover": {
-                  bgcolor: colors.secondary[600],
+                  backgroundColor:
+                    theme.palette.mode === "light" ? alpha(colors.secondary[600], 1) : alpha(colors.secondary[600], 0.8),
                 },
               }}
             >
-              <Typography fontWeight="600" textTransform="capitalize" letterSpacing="1px">
+              <Typography
+                color={colors.white[500]}
+                fontWeight="600"
+                textTransform="capitalize"
+                letterSpacing="1px"
+              >
                 Przejdź
               </Typography>
             </Button>
@@ -51,14 +74,23 @@ export default function Home() {
       <Grid xs={8}>
         <Card>
           <Box display="flex" justifyContent="center" overflow="hidden">
-            <Image height={300} width={700} src={sketchPhoto} alt={"Jegger photo"} />
+            <Image
+              height={300}
+              width={700}
+              src={sketchPhoto}
+              alt={"Jegger photo"}
+            />
           </Box>
         </Card>
       </Grid>
       <Grid xs={8} mdOffset="auto">
-        <Card bgcolor={alpha(theme.palette.primary.main, 0.2)}>
+        <Card bgcolor={theme.palette.primary.light}>
           <Box display="flex" justifyContent="center">
-            <Typography variant="h4" fontWeight="500">
+            <Typography
+              color={theme.palette.text.secondary}
+              variant="h4"
+              fontWeight="500"
+            >
               Filmaj &#169; Wszystkie prawa zastrzeżone
             </Typography>
           </Box>

@@ -30,26 +30,41 @@ export const themeSettings = (mode: PaletteMode): ThemeOptions => {
       ...(mode === "light"
         ? {
             primary: {
+              light: alpha(colors.primary[500], 0.2),
               main: colors.primary[500],
+              dark: colors.primary[600],
             },
             secondary: {
+              light: alpha(colors.secondary[500], 0.2),
               main: colors.secondary[500],
+              dark: colors.secondary[600],
             },
             background: {
               default: colors.white[500],
             },
+            text: {
+              primary: colors.white[500],
+              secondary: colors.black[500],
+            }
           }
         : {
             primary: {
+              light: alpha(colors.primary[500], 0.2),
               main: alpha(colors.primary[500], 0.8),
+              dark: colors.primary[600],
             },
             secondary: {
               light: alpha(colors.secondary[500], 0.2),
               main: alpha(colors.secondary[500], 0.8),
+              dark: colors.secondary[700],
             },
             background: {
               default: colors.black[500],
             },
+            text: {
+              primary: colors.black[500],
+              secondary: colors.white[500],
+            }
           }),
     },
     typography: {

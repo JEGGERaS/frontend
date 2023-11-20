@@ -23,7 +23,6 @@ const TopBar = (props: TopBarProps) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: theme.palette.mode === "light" ? colors.white[500] : colors.black[500],
         borderBottom: `2px solid ${
           theme.palette.mode === "light" ? alpha(colors.black[500], 0.05) : alpha(colors.white[500], 0.05)
         }`,
@@ -33,7 +32,7 @@ const TopBar = (props: TopBarProps) => {
         {props.page ? (
           <Typography
             variant="h2"
-            color={theme.palette.mode === "light" ? colors.black[700] : colors.white[500]}
+            color={theme.palette.text.secondary}
             sx={{ fontWeight: "600" }}
           >
             {props.page}
