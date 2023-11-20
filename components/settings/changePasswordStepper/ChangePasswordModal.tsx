@@ -213,7 +213,7 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             margin: "1rem 0rem 0.5rem 1rem",
           }}
         >
-          <Typography variant="h3" sx={{ marginLeft: "1rem", fontWeight: 600 }}>
+          <Typography variant="h3" color={theme.palette.text.secondary} sx={{ marginLeft: "1rem", fontWeight: 600 }}>
             Zmiana hasła
           </Typography>
           <IconButton
@@ -237,7 +237,16 @@ const ChangePasswordModal = (props: ChangePasswordModalProps) => {
             "& .MuiStepLabel-label": {
               fontSize: "1rem",
               display: "inline",
+              color: theme.palette.text.secondary
             },
+            "& .MuiStepLabel-label.MuiStepLabel-active": {
+              fontWeight: 600,
+              color: theme.palette.text.secondary
+            },
+            "& .MuiStepLabel-label.MuiStepLabel-completed":{
+              fontWeight: 600,
+              color: theme.palette.text.secondary
+            }
           }}
         >
           {steps.map((label) => (

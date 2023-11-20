@@ -37,7 +37,7 @@ const PswrdChangeStepSecond = (props: PswrdChangeStepSecondProps) => {
           Wprowadzony kod jest nieprawidłowy
         </Typography>
       ) : null}
-      <Typography variant="h5" sx={{ fontWeight: 500, marginTop: props.requestStatus === "wrong-code" ? "0.5rem" : "1rem" }}>
+      <Typography variant="h5" color={theme.palette.text.secondary} sx={{ fontWeight: 500, marginTop: props.requestStatus === "wrong-code" ? "0.5rem" : "1rem" }}>
         Jednorazowy kod został wygenerowany i wysłany na twoją skrzynkę pocztową. Jeżeli nie otrzymałeś kodu wyślij go
         ponownie.
       </Typography>

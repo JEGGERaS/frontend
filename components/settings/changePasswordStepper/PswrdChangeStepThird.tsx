@@ -1,4 +1,4 @@
-import { Box, Typography} from "@mui/material";
+import { Box, Typography, useTheme} from "@mui/material";
 import React from "react";
 
 interface PswrdChangeStepThirdProps {
@@ -6,18 +6,18 @@ interface PswrdChangeStepThirdProps {
 }
 
 const handleTextDisplayedBasedOnStatus = (status: string | null) => {
-
+  const theme = useTheme();
   const text = status === "success" ? 
     <>
-     <Typography variant="h2" sx={{fontWeight:600, marginBottom:"0.5rem"}}>Hasło zostało zmienione.</Typography>
-      <Typography variant="h4" sx={{fontWeight:500}}>
+     <Typography variant="h2" sx={{fontWeight:600, marginBottom:"0.5rem", color:theme.palette.text.secondary}}>Hasło zostało zmienione.</Typography>
+      <Typography variant="h4" sx={{fontWeight:500, color:theme.palette.text.secondary}}>
         Pamiętaj aby chronić swoje hasła i nie używać prostych kombinacji! Dbaj o swoje bezpieczeństwo.
       </Typography>
     </> 
     :
      <>
-      <Typography variant="h2" sx={{fontWeight:600, marginBottom:"0.5rem"}}>Zmiana hasła nie powiodła się!</Typography>
-      <Typography variant="h4" sx={{fontWeight:500}}>
+      <Typography variant="h2" sx={{fontWeight:600, marginBottom:"0.5rem", color:theme.palette.text.secondary}}>Zmiana hasła nie powiodła się!</Typography>
+      <Typography variant="h4" sx={{fontWeight:500, color:theme.palette.text.secondary}}>
         Wprowadzone stare hasło jest błędne. Spróbuj ponownie.
       </Typography>
      </>
