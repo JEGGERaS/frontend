@@ -7,6 +7,7 @@ import CustomTextField from "./CustomTextField";
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
+  handleShowPassword: () => void;
   user: string;
 }
 
@@ -75,7 +76,8 @@ const SettingsModal = (props: SettingsModalProps) => {
           }}
         >
           <Button
-            variant="contained"
+            onClick={props.handleShowPassword}
+            data-testid="change-password-button"
             sx={{
               backgroundColor: theme.palette.secondary.main,
               color: theme.palette.mode === "light" ? theme.palette.text.primary : theme.palette.text.secondary,

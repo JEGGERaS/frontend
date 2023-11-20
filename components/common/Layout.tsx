@@ -4,6 +4,7 @@ import SideBar from "../sideBar/SideBar";
 import TopBar from "../topBar/TopBar";
 import SettingsModal from "../settings/SettingsModal";
 import React from "react";
+import ChangePasswordModal from "../settings/changePasswordStepper/ChangePasswordModal";
 
 interface LayoutProps {
   page: string;
@@ -12,9 +13,16 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
+  const [isChangePasswordModal, setIsChangePasswordModal] = React.useState<boolean>(false);
+
+  const handleShowPasswordClick = () => {
+    setOpen((prev) => !prev);
+    setIsChangePasswordModal(true);
+  };
 
   const handleSettingsClick = () => {
     setOpen((prev) => !prev);
+    isChangePasswordModal && setIsChangePasswordModal(false);
   };
 
   return (
@@ -28,7 +36,8 @@ const Layout = (props: LayoutProps) => {
           </Grid>
         </Box>
       </Box>
-      <SettingsModal isOpen={open} onClose={handleSettingsClick} user="Costam" />
+      <SettingsModal isOpen={open} onClose={handleSettingsClick} handleShowPassword={handleShowPasswordClick} user="Costam" />
+      <ChangePasswordModal isOpen={isChangePasswordModal} onClose={handleSettingsClick}/>
     </Box>
   );
 };
