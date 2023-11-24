@@ -35,7 +35,7 @@ export const tokens = (mode: string) => ({
           900: "#323232",
         },
         black: {
-          100: "#d2d2d2",
+          100: "#3A3A3A",
           200: "#a6a6a6",
           300: "#797979",
           400: "#4d4d4d",
@@ -81,7 +81,7 @@ export const tokens = (mode: string) => ({
           900: "#323232",
         },
         black: {
-          100: "#d2d2d2",
+          100: "#3A3A3A",
           200: "#a6a6a6",
           300: "#797979",
           400: "#4d4d4d",
